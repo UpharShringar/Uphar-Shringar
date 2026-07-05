@@ -709,15 +709,7 @@ cursor:pointer;
 </div>
 
 <script>
-function placeOrder(){
 
-let name=document.getElementById("fullname").value;
-let phone=document.getElementById("mobile").value;
-let address=document.getElementById("address").value;
-let payment=document.getElementById("payment").value;
-
-if(name=="" || phone=="" || address==""){
-alert("⚠️ Please fill all details");
 return;
 }
 
@@ -728,10 +720,11 @@ alert(
 "\nPayment: "+payment
 );
 
-}
+    
 </script>
     <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCyFbpDhJLqQU3cLsEGnPL-rxBZrI4r7Dw",
@@ -744,8 +737,40 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-console.log("Firebase Connected Successfully!");
+window.placeOrder = async function () {
+
+  const name = document.getElementById("fullname").value;
+  const phone = document.getElementById("mobile").value;
+  const address = document.getElementById("address").value;
+  const payment = document.getElementById("payment").value;
+
+  if (!name || !phone || !address) {
+    alert("⚠️ Please fill all details");
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "orders"), {
+      name,
+      phone,
+      address,
+      payment,
+      createdAt: new Date()
+    });
+
+    alert("✅ Order Saved Successfully!");
+
+    document.getElementById("fullname").value = "";
+    document.getElementById("mobile").value = "";
+    document.getElementById("address").value = "";
+
+  } catch (err) {
+    alert("Error: " + err.message);
+  }
+
+};
 </script>
 </body>
 </html>
