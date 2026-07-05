@@ -161,14 +161,14 @@ background:#c2185b;
 <img src="https://via.placeholder.com/200x200?text=Cream">
 <h3>Himalaya Cream</h3>
 <p class="price">₹220</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
 <img src="https://via.placeholder.com/200x200?text=Cream">
 <h3>Mamaearth Cream</h3>
 <p class="price">₹349</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 </div>
@@ -196,14 +196,14 @@ background:#c2185b;
 <img src="https://via.placeholder.com/200x200?text=Nail+Paint">
 <h3>Elle18 Nail Paint</h3>
 <p class="price">₹129</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
 <img src="https://via.placeholder.com/200x200?text=Nail+Paint">
 <h3>Faces Canada Nail Paint</h3>
 <p class="price">₹179</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 </div>
@@ -218,14 +218,14 @@ background:#c2185b;
 <img src="https://via.placeholder.com/200x200?text=Face+Wash">
 <h3>Himalaya Face Wash</h3>
 <p class="price">₹180</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
 <img src="https://via.placeholder.com/200x200?text=Face+Wash">
 <h3>Mamaearth Face Wash</h3>
 <p class="price">₹249</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
@@ -254,27 +254,27 @@ background:#c2185b;
 <img src="https://via.placeholder.com/200x200?text=Kajal">
 <h3>Lakme Kajal</h3>
 <p class="price">₹150</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
 <img src="https://via.placeholder.com/200x200?text=Kajal">
 <h3>Maybelline Kajal</h3>
 <p class="price">₹199</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 <div class="card">
 <img src="https://via.placeholder.com/200x200?text=Kajal">
 <h3>Blue Heaven Kajal</h3>
 <p class="price">₹120</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
 <img src="https://via.placeholder.com/200x200?text=Kajal">
 <h3>Swiss Beauty Kajal</h3>
 <p class="price">₹170</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 </div>
@@ -289,28 +289,28 @@ background:#c2185b;
 <img src="https://via.placeholder.com/200x200?text=Perfume">
 <h3>Fogg Perfume</h3>
 <p class="price">₹299</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
 <img src="https://via.placeholder.com/200x200?text=Perfume">
 <h3>Bella Vita Perfume</h3>
 <p class="price">₹499</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
 <img src="https://via.placeholder.com/200x200?text=Perfume">
 <h3>Yardley Perfume</h3>
 <p class="price">₹399</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
 <img src="https://via.placeholder.com/200x200?text=Perfume">
 <h3>Engage Perfume</h3>
 <p class="price">₹350</p>
-<button>Add to Cart</button>
+<button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 </div>
@@ -720,9 +720,8 @@ alert(
 "\nPayment: "+payment
 );
 
-    
-</script>
-    <script type="module">
+    <script
+        type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
@@ -771,6 +770,32 @@ window.placeOrder = async function () {
   }
 
 };
+</script><div id="cartPanel" style="position:fixed;left:10px;bottom:10px;background:white;padding:10px;border:1px solid #ccc;border-radius:10px;max-width:250px;z-index:9999;">
+<h3>🛒 Cart</h3>
+<div id="cartItems">No items</div>
+<p><b>Total: ₹<span id="cartTotal">0</span></b></p>
+</div>
+
+<script>
+let cart = [];
+let total = 0;
+
+function addToCart(btn){
+
+const card = btn.parentElement;
+const name = card.querySelector("h3").innerText;
+const price = parseInt(card.querySelector(".price").innerText.replace("₹",""));
+
+cart.push({name,price});
+total += price;
+
+document.getElementById("cartTotal").innerText = total;
+
+document.getElementById("cartItems").innerHTML =
+cart.map(item => "• " + item.name + " - ₹" + item.price).join("<br>");
+
+alert(name + " Added To Cart");
+}
 </script>
 </body>
 </html>
