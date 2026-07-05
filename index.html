@@ -770,40 +770,17 @@ window.placeOrder = async function () {
   }
 
 };
-</script><div id="cartPanel" style="position:fixed;left:10px;bottom:10px;background:white;padding:10px;border:1px solid #ccc;border-radius:10px;max-width:250px;z-index:9999;">
-<h3>🛒 Cart</h3>
-<div id="cartItems">No items</div>
-<p><b>Total: ₹<span id="cartTotal">0</span></b></p>
-</div>
 
-<script> 
-    <div id="cartPanel" style="position:fixed;left:10px;bottom:10px;background:white;padding:10px;border:1px solid #ccc;border-radius:10px;max-width:250px;z-index:9999;">
-<h3>🛒 Cart</h3>
-<div id="cartItems">No items</div>
-<p><b>Total: ₹<span id="cartTotal">0</span></b></p>
+</script>
+
+<div id="cartPanel" style="position:fixed;left:10px;bottom:10px;background:white;padding:10px;border:1px solid #ccc;">
+  <h3>🛒 Cart</h3>
+  <div id="cartItems">No items</div>
+  <p><b>Total: ₹<span id="cartTotal">0</span></b></p>
 </div>
 
 <script>
-let cart = [];
-let total = 0;
-
-function addToCart(btn){
-
-const card = btn.parentElement;
-const name = card.querySelector("h3").innerText;
-const price = parseInt(card.querySelector(".price").innerText.replace("₹",""));
-
-cart.push({name,price});
-total += price;
-
-document.getElementById("cartTotal").innerText = total;
-
-document.getElementById("cartItems").innerHTML =
-cart.map(item => "• " + item.name + " - ₹" + item.price).join("<br>");
-
-alert(name + " Added To Cart");
-}
-</script>
+<script>
 let cart = [];
 let total = 0;
 
