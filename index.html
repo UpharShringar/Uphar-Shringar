@@ -423,5 +423,128 @@ box-shadow:0 2px 8px rgba(0,0,0,.3);
 <div class="wishlist" onclick="alert('❤️ Wishlist Coming Soon')">
 ❤
 </div>
+    <style>
+.banner{
+width:100%;
+background:linear-gradient(90deg,#ff4081,#e91e63);
+color:white;
+text-align:center;
+padding:25px 15px;
+border-radius:0 0 15px 15px;
+}
+
+.banner h2{
+margin:0;
+font-size:28px;
+}
+
+.banner p{
+margin:10px 0;
+}
+
+.banner button{
+background:white;
+color:#e91e63;
+padding:10px 20px;
+border:none;
+border-radius:25px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.floating-whatsapp{
+position:fixed;
+bottom:90px;
+right:20px;
+background:#25D366;
+color:white;
+padding:14px;
+border-radius:50%;
+font-size:24px;
+text-decoration:none;
+box-shadow:0 2px 8px rgba(0,0,0,.3);
+}
+</style>
+
+<div class="banner">
+<h2>🎉 Welcome to Uphar Shringar</h2>
+<p>Best Cosmetics • Best Price • New Offers Every Week</p>
+<button onclick="alert('Offer Coming Soon')">
+Shop Now
+</button>
+</div>
+
+<a class="floating-whatsapp"
+href="https://wa.me/919973750678"
+target="_blank">
+💬
+</a>
+    <style>
+.review-btn,
+.reward-btn{
+display:block;
+width:90%;
+margin:15px auto;
+padding:15px;
+text-align:center;
+text-decoration:none;
+font-size:18px;
+font-weight:bold;
+border-radius:12px;
+color:#fff;
+}
+
+.review-btn{
+background:#4285F4;
+}
+
+.reward-btn{
+background:#FF9800;
+}
+
+.slider{
+width:95%;
+margin:20px auto;
+overflow:hidden;
+border-radius:12px;
+}
+
+.slider img{
+width:100%;
+display:block;
+border-radius:12px;
+}
+</style>
+
+<div class="slider">
+<img id="sliderImage"
+src="https://via.placeholder.com/900x300/ff4081/ffffff?text=Uphar+Shringar+Offer">
+</div>
+
+<a class="review-btn"
+href="https://g.page/r/CZgUfg_j1lIwEAE/review"
+target="_blank">
+⭐ Google Review
+</a>
+
+<a class="reward-btn"
+href="https://upharshringar.github.io/Uphar-Shringar/">
+🎁 Reward Points
+</a>
+
+<script>
+const images=[
+"https://via.placeholder.com/900x300/ff4081/ffffff?text=Beauty+Offer",
+"https://via.placeholder.com/900x300/e91e63/ffffff?text=Lipstick+Collection",
+"https://via.placeholder.com/900x300/f06292/ffffff?text=Cream+Discount"
+];
+
+let current=0;
+
+setInterval(()=>{
+current=(current+1)%images.length;
+document.getElementById("sliderImage").src=images[current];
+},3000);
+</script>
 </body>
 </html>
