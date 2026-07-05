@@ -321,6 +321,31 @@ background:#c2185b;
 <p>Beauty & Cosmetics Store</p>
 <p>© 2026 All Rights Reserved</p>
 </footer>
+<script>
+const searchInput = document.querySelector(".search input");
+const cards = document.querySelectorAll(".card");
 
+searchInput.addEventListener("keyup", function () {
+    let value = this.value.toLowerCase();
+
+    cards.forEach(card => {
+        let text = card.innerText.toLowerCase();
+
+        if (text.includes(value)) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+});
+
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach(btn => {
+    btn.addEventListener("click", function () {
+        alert("✅ Product Added To Cart");
+    });
+});
+</script>
 </body>
 </html>
