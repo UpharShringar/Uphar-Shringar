@@ -730,5 +730,22 @@ alert(
 
 }
 </script>
+    <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCyFbpDhJLqQU3cLsEGnPL-rxBZrI4r7Dw",
+  authDomain: "upharshringar-and-gifts.firebaseapp.com",
+  projectId: "upharshringar-and-gifts",
+  storageBucket: "upharshringar-and-gifts.firebasestorage.app",
+  messagingSenderId: "88460516528",
+  appId: "1:88460516528:web:85e6b26ef08da70f9bef75",
+  measurementId: "G-L9LGTEW9ZX"
+};
+
+const app = initializeApp(firebaseConfig);
+
+console.log("Firebase Connected Successfully!");
+</script>
 </body>
 </html>
