@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,78 +7,320 @@
 <title>Uphar Shringar</title>
 
 <style>
-body{
-font-family:Arial,sans-serif;
-background:#f5f5f5;
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#fff5f8;
 }
 
 header{
-background:#ff4081;
-color:#fff;
+background:#e91e63;
+color:white;
 padding:15px;
 text-align:center;
-font-size:24px;
+font-size:28px;
 font-weight:bold;
+position:sticky;
+top:0;
+}
+
+.search{
+padding:15px;
+}
+
+.search input{
+width:100%;
+padding:12px;
+border:2px solid #e91e63;
+border-radius:10px;
+font-size:16px;
 }
 
 .category{
-background:#fff;
-margin:15px;
 padding:15px;
-border-radius:10px;
-box-shadow:0 2px 5px rgba(0,0,0,.2);
 }
 
 .category h2{
-color:#ff4081;
-margin-top:0;
+color:#e91e63;
+margin-bottom:10px;
 }
 
-.item{
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:15px;
+}
+
+.card{
+background:white;
+border-radius:12px;
 padding:10px;
-margin:8px 0;
-background:#ffe6ef;
+box-shadow:0 2px 8px rgba(0,0,0,.2);
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:150px;
+object-fit:cover;
 border-radius:8px;
+}
+
+.price{
+font-size:18px;
+color:green;
+font-weight:bold;
+margin:8px 0;
+}
+
+button{
+width:100%;
+padding:10px;
+background:#e91e63;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#c2185b;
 }
 </style>
 </head>
 
 <body>
 
-<header>Uphar Shringar</header>
+<header>💄 Uphar Shringar</header>
+
+<div class="search">
+<input type="text" placeholder="Search Cosmetics...">
+</div>
 
 <div class="category">
 <h2>💄 Lipstick</h2>
-<div class="item">Lakme Lipstick</div>
-<div class="item">Mamaearth Lipstick</div>
-<div class="item">Maybelline Lipstick</div>
-<div class="item">Swiss Beauty Lipstick</div>
+
+<div class="products">
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Lipstick">
+<h3>Lakme Lipstick</h3>
+<p class="price">₹299</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Lipstick">
+<h3>Maybelline Lipstick</h3>
+<p class="price">₹399</p>
+<button>Add to Cart</button>
+</div>
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Lipstick">
+<h3>Swiss Beauty Lipstick</h3>
+<p class="price">₹249</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Lipstick">
+<h3>Elle18 Lipstick</h3>
+<p class="price">₹199</p>
+<button>Add to Cart</button>
+</div>
+
+</div>
 </div>
 
 <div class="category">
 <h2>🧴 Cream</h2>
-<div class="item">Ponds Cream</div>
-<div class="item">Nivea Cream</div>
-<div class="item">Himalaya Cream</div>
-<div class="item">Mamaearth Cream</div>
+
+<div class="products">
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Cream">
+<h3>Ponds Cream</h3>
+<p class="price">₹199</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Cream">
+<h3>Nivea Cream</h3>
+<p class="price">₹249</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Cream">
+<h3>Himalaya Cream</h3>
+<p class="price">₹220</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Cream">
+<h3>Mamaearth Cream</h3>
+<p class="price">₹349</p>
+<button>Add to Cart</button>
+</div>
+
+</div>
 </div>
 
 <div class="category">
 <h2>💅 Nail Paint</h2>
-<div class="item">Lakme Nail Paint</div>
-<div class="item">Colorbar Nail Paint</div>
-<div class="item">Elle18 Nail Paint</div>
-<div class="item">Faces Canada Nail Paint</div>
+
+<div class="products">
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Nail+Paint">
+<h3>Lakme Nail Paint</h3>
+<p class="price">₹149</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Nail+Paint">
+<h3>Colorbar Nail Paint</h3>
+<p class="price">₹199</p>
+<button>Add to Cart</button>
+</div>
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Nail+Paint">
+<h3>Elle18 Nail Paint</h3>
+<p class="price">₹129</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Nail+Paint">
+<h3>Faces Canada Nail Paint</h3>
+<p class="price">₹179</p>
+<button>Add to Cart</button>
+</div>
+
+</div>
 </div>
 
 <div class="category">
 <h2>🧼 Face Wash</h2>
-<div class="item">Himalaya Face Wash</div>
-<div class="item">Mamaearth Face Wash</div>
-<div class="item">Ponds Face Wash</div>
+
+<div class="products">
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Face+Wash">
+<h3>Himalaya Face Wash</h3>
+<p class="price">₹180</p>
+<button>Add to Cart</button>
 </div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Face+Wash">
+<h3>Mamaearth Face Wash</h3>
+<p class="price">₹249</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Face+Wash">
+<h3>Garnier Face Wash</h3>
+<p class="price">₹199</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Face+Wash">
+<h3>Ponds Face Wash</h3>
+<p class="price">₹175</p>
+<button>Add to Cart</button>
+</div>
+
+</div>
+</div>
+
+<div class="category">
+<h2>👁️ Kajal</h2>
+
+<div class="products">
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Kajal">
+<h3>Lakme Kajal</h3>
+<p class="price">₹150</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Kajal">
+<h3>Maybelline Kajal</h3>
+<p class="price">₹199</p>
+<button>Add to Cart</button>
+</div>
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Kajal">
+<h3>Blue Heaven Kajal</h3>
+<p class="price">₹120</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Kajal">
+<h3>Swiss Beauty Kajal</h3>
+<p class="price">₹170</p>
+<button>Add to Cart</button>
+</div>
+
+</div>
+</div>
+
+<div class="category">
+<h2>🌸 Perfume</h2>
+
+<div class="products">
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Perfume">
+<h3>Fogg Perfume</h3>
+<p class="price">₹299</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Perfume">
+<h3>Bella Vita Perfume</h3>
+<p class="price">₹499</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Perfume">
+<h3>Yardley Perfume</h3>
+<p class="price">₹399</p>
+<button>Add to Cart</button>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/200x200?text=Perfume">
+<h3>Engage Perfume</h3>
+<p class="price">₹350</p>
+<button>Add to Cart</button>
+</div>
+
+</div>
+</div>
+
+<footer style="background:#e91e63;color:#fff;text-align:center;padding:20px;margin-top:30px;">
+<h3>Uphar Shringar</h3>
+<p>Beauty & Cosmetics Store</p>
+<p>© 2026 All Rights Reserved</p>
+</footer>
 
 </body>
 </html>
-
