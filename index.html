@@ -270,3 +270,136 @@ cursor:pointer;
 </div>
 
 </div>
+<div id="cartPanel" style="position:fixed;right:10px;bottom:10px;width:280px;background:#fff;border:2px solid #e91e63;border-radius:10px;padding:10px;box-shadow:0 0 10px rgba(0,0,0,.2);">
+
+<h3>🛒 Shopping Cart</h3>
+
+<div id="cartItems">
+No items in cart
+</div>
+
+<hr>
+
+<p><b>Total: ₹<span id="cartTotal">0</span></b></p>
+
+<button onclick="clearCart()" style="width:100%;padding:10px;background:red;color:white;border:none;border-radius:5px;">
+🗑️ Clear Cart
+</button>
+
+</div>
+
+<br><br><br>
+
+<h2>📦 Checkout</h2>
+
+<input id="fullname" type="text" placeholder="Full Name"><br><br>
+
+<input id="mobile" type="tel" placeholder="Mobile Number"><br><br>
+
+<textarea id="address" placeholder="Full Address"></textarea><br><br>
+
+<select id="payment">
+<option>Cash on Delivery</option>
+<option>Google Pay</option>
+<option>PhonePe</option>
+<option>Paytm</option>
+</select>
+
+<br><br>
+
+<button onclick="placeOrder()">
+✅ Place Order
+</button>
+  <script>
+let cart = [];
+let total = 0;
+
+function addToCart(btn){
+
+const card = btn.parentElement;
+
+const name = card.querySelector("h3").innerText;
+
+const price = parseInt(
+card.querySelector(".price").innerText.replace("₹","")
+);
+
+cart.push({name,price});
+
+total += price;
+
+document.getElementById("cartTotal").innerText = total;
+
+document.getElementById("cartItems").innerHTML =
+cart.map(item =>
+"• " + item.name + " - ₹" + item.price
+).join("<br>");
+
+}
+
+function clearCart(){
+
+cart = [];
+total = 0;
+
+document.getElementById("cartItems").innerHTML =
+"No items in cart";
+
+document.getElementById("cartTotal").innerText = "0";
+
+}
+</script>
+  <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCyFbpDhJLqQU3cLsEGnPL-rxBZrI4r7Dw",
+  authDomain: "upharshringar-and-gifts.firebaseapp.com",
+  projectId: "upharshringar-and-gifts",
+  storageBucket: "upharshringar-and-gifts.firebasestorage.app",
+  messagingSenderId: "88460516528",
+  appId: "1:88460516528:web:85e6b26ef08da70f9bef75",
+  measurementId: "G-L9LGTEW9ZX"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.placeOrder = async function () {
+
+  const name = document.getElementById("fullname").value;
+  const phone = document.getElementById("mobile").value;
+  const address = document.getElementById("address").value;
+  const payment = document.getElementById("payment").value;
+
+  if (!name || !phone || !address) {
+    alert("Please fill all details");
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "orders"), {
+      customerName: name,
+      mobile: phone,
+      address: address,
+      payment: payment,
+      cart: cart,
+      total: total,
+      createdAt: new Date().toISOString()
+    });
+
+    alert("✅ Order Placed Successfully!");
+
+    clearCart();
+
+    document.getElementById("fullname").value = "";
+    document.getElementById("mobile").value = "";
+    document.getElementById("address").value = "";
+
+  } catch (e) {
+    alert("Error : " + e.message);
+  }
+
+};
+</script>
