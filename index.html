@@ -369,12 +369,10 @@ document.getElementById("cartItems").innerHTML =
 
 document.getElementById("cartTotal").innerText = "0";
 
-}
-</script>
   <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
 const firebaseConfig = {
   apiKey: "AIzaSyCyFbpDhJLqQU3cLsEGnPL-rxBZrI4r7Dw",
   authDomain: "upharshringar-and-gifts.firebaseapp.com",
@@ -386,8 +384,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
+const db = getFirestore(app); 
+const storage = getStorage(app);
 window.placeOrder = async function () {
 
   const name = document.getElementById("fullname").value;
@@ -446,5 +444,22 @@ z-index:9999;
 ">
 💬
 </a>
+  <hr>
+
+<h2>🛠 Admin Product Upload</h2>
+
+<input type="text" id="productName" placeholder="Product Name"><br><br>
+
+<input type="number" id="productPrice" placeholder="Price"><br><br>
+
+<input type="number" id="offerPrice" placeholder="Offer Price"><br><br>
+
+<input type="file" id="productImage"><br><br>
+
+<button onclick="uploadProduct()">
+📤 Upload Product
+</button>
+
+<hr>
 </body>
 </html>
