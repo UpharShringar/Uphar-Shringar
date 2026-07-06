@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Uphar Shringar</title>
+<title>Uphar Shringar & Gifts</title>
 
 <style>
 *{
@@ -15,7 +14,7 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#fff5f8;
+background:#fff5f7;
 }
 
 header{
@@ -23,780 +22,251 @@ background:#e91e63;
 color:white;
 padding:15px;
 text-align:center;
-font-size:28px;
+font-size:24px;
 font-weight:bold;
 position:sticky;
 top:0;
+z-index:1000;
 }
 
-.search{
-padding:15px;
+.top-menu{
+display:flex;
+justify-content:space-around;
+background:white;
+padding:10px;
+position:sticky;
+top:60px;
+z-index:999;
+box-shadow:0 2px 5px rgba(0,0,0,.2);
 }
 
-.search input{
-width:100%;
-padding:12px;
-border:2px solid #e91e63;
-border-radius:10px;
-font-size:16px;
+.top-menu button{
+padding:10px 15px;
+border:none;
+border-radius:6px;
+background:#e91e63;
+color:white;
+cursor:pointer;
 }
 
 .category{
-padding:15px;
+padding:20px;
 }
 
 .category h2{
+margin-bottom:15px;
 color:#e91e63;
-margin-bottom:10px;
 }
 
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
 gap:15px;
 }
 
 .card{
 background:white;
-border-radius:12px;
+border-radius:10px;
 padding:10px;
-box-shadow:0 2px 8px rgba(0,0,0,.2);
 text-align:center;
+box-shadow:0 2px 6px rgba(0,0,0,.2);
 }
 
 .card img{
 width:100%;
-height:150px;
-object-fit:cover;
-border-radius:8px;
+border-radius:10px;
+}
+
+.card h3{
+margin:10px 0;
 }
 
 .price{
-font-size:18px;
-color:green;
+font-size:20px;
 font-weight:bold;
-margin:8px 0;
+color:green;
 }
 
-button{
-width:100%;
+.card button{
+margin-top:10px;
 padding:10px;
+width:100%;
 background:#e91e63;
 color:white;
 border:none;
-border-radius:8px;
-font-size:16px;
+border-radius:5px;
 cursor:pointer;
 }
-
-button:hover{
-background:#c2185b;
-}
 </style>
-</head>
 
+</head>
 <body>
 
-<header>💄 Uphar Shringar</header>
+<header>
+💄 Uphar Shringar & Gifts
+</header>
 
-<div class="search">
-<input type="text" placeholder="Search Cosmetics...">
+<div class="top-menu">
+<button>🏠 Home</button>
+<button>📂 Category</button>
+<button>🎁 Offers</button>
+<button>📞 Contact</button>
 </div>
-
 <div class="category">
+
 <h2>💄 Lipstick</h2>
 
 <div class="products">
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Lipstick">
+<img src="https://via.placeholder.com/200x200?text=Lakme+Lipstick">
 <h3>Lakme Lipstick</h3>
 <p class="price">₹299</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Lipstick">
+<img src="https://via.placeholder.com/200x200?text=Maybelline">
 <h3>Maybelline Lipstick</h3>
 <p class="price">₹399</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
+
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Lipstick">
+<img src="https://via.placeholder.com/200x200?text=Swiss+Beauty">
 <h3>Swiss Beauty Lipstick</h3>
 <p class="price">₹249</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Lipstick">
+<img src="https://via.placeholder.com/200x200?text=Elle18">
 <h3>Elle18 Lipstick</h3>
 <p class="price">₹199</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
-<div class="category">
+</div>
+
 <h2>🧴 Cream</h2>
 
 <div class="products">
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Cream">
+<img src="https://via.placeholder.com/200x200?text=Ponds">
 <h3>Ponds Cream</h3>
 <p class="price">₹199</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Cream">
+<img src="https://via.placeholder.com/200x200?text=Nivea">
 <h3>Nivea Cream</h3>
 <p class="price">₹249</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Cream">
+<img src="https://via.placeholder.com/200x200?text=Himalaya">
 <h3>Himalaya Cream</h3>
 <p class="price">₹220</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Cream">
+<img src="https://via.placeholder.com/200x200?text=Mamaearth">
 <h3>Mamaearth Cream</h3>
 <p class="price">₹349</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 </div>
-</div>
 
-<div class="category">
+</div>
 <h2>💅 Nail Paint</h2>
 
 <div class="products">
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Nail+Paint">
+<img src="https://via.placeholder.com/200x200?text=Lakme+Nail+Paint">
 <h3>Lakme Nail Paint</h3>
 <p class="price">₹149</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Nail+Paint">
+<img src="https://via.placeholder.com/200x200?text=Colorbar">
 <h3>Colorbar Nail Paint</h3>
 <p class="price">₹199</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
+
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Nail+Paint">
+<img src="https://via.placeholder.com/200x200?text=Elle18">
 <h3>Elle18 Nail Paint</h3>
 <p class="price">₹129</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Nail+Paint">
+<img src="https://via.placeholder.com/200x200?text=Faces+Canada">
 <h3>Faces Canada Nail Paint</h3>
 <p class="price">₹179</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 </div>
-</div>
 
-<div class="category">
 <h2>🧼 Face Wash</h2>
 
 <div class="products">
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Face+Wash">
+<img src="https://via.placeholder.com/200x200?text=Himalaya">
 <h3>Himalaya Face Wash</h3>
 <p class="price">₹180</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Face+Wash">
+<img src="https://via.placeholder.com/200x200?text=Mamaearth">
 <h3>Mamaearth Face Wash</h3>
 <p class="price">₹249</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Face+Wash">
+<img src="https://via.placeholder.com/200x200?text=Garnier">
 <h3>Garnier Face Wash</h3>
 <p class="price">₹199</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Face+Wash">
+<img src="https://via.placeholder.com/200x200?text=Ponds">
 <h3>Ponds Face Wash</h3>
 <p class="price">₹175</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 </div>
-</div>
 
-<div class="category">
 <h2>👁️ Kajal</h2>
 
 <div class="products">
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Kajal">
+<img src="https://via.placeholder.com/200x200?text=Lakme+Kajal">
 <h3>Lakme Kajal</h3>
 <p class="price">₹150</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
 
 <div class="card">
-<img src="https://via.placeholder.com/200x200?text=Kajal">
+<img src="https://via.placeholder.com/200x200?text=Maybelline+Kajal">
 <h3>Maybelline Kajal</h3>
 <p class="price">₹199</p>
 <button onclick="addToCart(this)">Add to Cart</button>
 </div>
-<div class="card">
-<img src="https://via.placeholder.com/200x200?text=Kajal">
-<h3>Blue Heaven Kajal</h3>
-<p class="price">₹120</p>
-<button onclick="addToCart(this)">Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="https://via.placeholder.com/200x200?text=Kajal">
-<h3>Swiss Beauty Kajal</h3>
-<p class="price">₹170</p>
-<button onclick="addToCart(this)">Add to Cart</button>
-</div>
 
 </div>
-</div>
-
-<div class="category">
-<h2>🌸 Perfume</h2>
-
-<div class="products">
-
-<div class="card">
-<img src="https://via.placeholder.com/200x200?text=Perfume">
-<h3>Fogg Perfume</h3>
-<p class="price">₹299</p>
-<button onclick="addToCart(this)">Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="https://via.placeholder.com/200x200?text=Perfume">
-<h3>Bella Vita Perfume</h3>
-<p class="price">₹499</p>
-<button onclick="addToCart(this)">Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="https://via.placeholder.com/200x200?text=Perfume">
-<h3>Yardley Perfume</h3>
-<p class="price">₹399</p>
-<button onclick="addToCart(this)">Add to Cart</button>
-</div>
-
-<div class="card">
-<img src="https://via.placeholder.com/200x200?text=Perfume">
-<h3>Engage Perfume</h3>
-<p class="price">₹350</p>
-<button onclick="addToCart(this)">Add to Cart</button>
-</div>
-
-</div>
-</div>
-
-<footer style="background:#e91e63;color:#fff;text-align:center;padding:20px;margin-top:30px;">
-<h3>Uphar Shringar</h3>
-<p>Beauty & Cosmetics Store</p>
-<p>© 2026 All Rights Reserved</p>
-</footer>
-<script>
-const searchInput = document.querySelector(".search input");
-const cards = document.querySelectorAll(".card");
-
-searchInput.addEventListener("keyup", function () {
-    let value = this.value.toLowerCase();
-
-    cards.forEach(card => {
-        let text = card.innerText.toLowerCase();
-
-        if (text.includes(value)) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-    });
-});
-
-const buttons = document.querySelectorAll("button");
-
-buttons.forEach(btn => {
-    btn.addEventListener("click", function () {
-        alert("✅ Product Added To Cart");
-    });
-});
-</script>
-    <style>
-#cart-box{
-position:fixed;
-top:15px;
-right:15px;
-background:#e91e63;
-color:#fff;
-padding:10px 15px;
-border-radius:25px;
-font-weight:bold;
-box-shadow:0 2px 8px rgba(0,0,0,.3);
-z-index:999;
-}
-</style>
-
-<div id="cart-box">
-🛒 Cart : <span id="cart-count">0</span>
-</div>
-
-<script>
-let cartCount = 0;
-
-document.querySelectorAll("button").forEach(btn=>{
-btn.onclick=function(){
-cartCount++;
-document.getElementById("cart-count").innerText=cartCount;
-alert("✅ Product Added to Cart");
-};
-});
-</script>
-    <style>
-.top-menu{
-display:flex;
-justify-content:space-around;
-background:#ffffff;
-padding:10px;
-position:sticky;
-top:60px;
-z-index:998;
-box-shadow:0 2px 5px rgba(0,0,0,.2);
-}
-
-.top-menu button{
-background:#e91e63;
-color:white;
-border:none;
-padding:8px 12px;
-border-radius:20px;
-font-size:14px;
-cursor:pointer;
-}
-
-.wishlist{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#ff4081;
-color:white;
-padding:12px;
-border-radius:50%;
-font-size:22px;
-cursor:pointer;
-box-shadow:0 2px 8px rgba(0,0,0,.3);
-}
-</style>
-
-<div class="top-menu">
-<button onclick="window.scrollTo(0,0)">🏠 Home</button>
-<button onclick="document.querySelector('.category').scrollIntoView()">📂 Category</button>
-<button onclick="alert('Offer Coming Soon')">🎁 Offers</button>
-<button onclick="alert('Contact: +91 XXXXXXXXXX')">📞 Contact</button>
-</div>
-
-<div class="wishlist" onclick="alert('❤️ Wishlist Coming Soon')">
-❤
-</div>
-    <style>
-.banner{
-width:100%;
-background:linear-gradient(90deg,#ff4081,#e91e63);
-color:white;
-text-align:center;
-padding:25px 15px;
-border-radius:0 0 15px 15px;
-}
-
-.banner h2{
-margin:0;
-font-size:28px;
-}
-
-.banner p{
-margin:10px 0;
-}
-
-.banner button{
-background:white;
-color:#e91e63;
-padding:10px 20px;
-border:none;
-border-radius:25px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.floating-whatsapp{
-position:fixed;
-bottom:90px;
-right:20px;
-background:#25D366;
-color:white;
-padding:14px;
-border-radius:50%;
-font-size:24px;
-text-decoration:none;
-box-shadow:0 2px 8px rgba(0,0,0,.3);
-}
-</style>
-
-<div class="banner">
-<h2>🎉 Welcome to Uphar Shringar</h2>
-<p>Best Cosmetics • Best Price • New Offers Every Week</p>
-<button onclick="alert('Offer Coming Soon')">
-Shop Now
-</button>
-</div>
-
-<a class="floating-whatsapp"
-href="https://wa.me/919973750678"
-target="_blank">
-💬
-</a>
-    <style>
-.review-btn,
-.reward-btn{
-display:block;
-width:90%;
-margin:15px auto;
-padding:15px;
-text-align:center;
-text-decoration:none;
-font-size:18px;
-font-weight:bold;
-border-radius:12px;
-color:#fff;
-}
-
-.review-btn{
-background:#4285F4;
-}
-
-.reward-btn{
-background:#FF9800;
-}
-
-.slider{
-width:95%;
-margin:20px auto;
-overflow:hidden;
-border-radius:12px;
-}
-
-.slider img{
-width:100%;
-display:block;
-border-radius:12px;
-}
-</style>
-
-<div class="slider">
-<img id="sliderImage"
-src="https://via.placeholder.com/900x300/ff4081/ffffff?text=Uphar+Shringar+Offer">
-</div>
-
-<a class="review-btn"
-href="https://g.page/r/CZgUfg_j1lIwEAE/review"
-target="_blank">
-⭐ Google Review
-</a>
-
-<a class="reward-btn"
-href="https://upharshringar.github.io/Uphar-Shringar/">
-🎁 Reward Points
-</a>
-
-<script>
-const images=[
-"https://via.placeholder.com/900x300/ff4081/ffffff?text=Beauty+Offer",
-"https://via.placeholder.com/900x300/e91e63/ffffff?text=Lipstick+Collection",
-"https://via.placeholder.com/900x300/f06292/ffffff?text=Cream+Discount"
-];
-
-let current=0;
-
-setInterval(()=>{
-current=(current+1)%images.length;
-document.getElementById("sliderImage").src=images[current];
-},3000);
-</script>
-    <style>
-.login-box{
-width:90%;
-margin:20px auto;
-background:#fff;
-padding:15px;
-border-radius:12px;
-box-shadow:0 2px 8px rgba(0,0,0,.2);
-}
-
-.login-box h2{
-text-align:center;
-color:#e91e63;
-margin-bottom:15px;
-}
-
-.login-box input{
-width:100%;
-padding:12px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:8px;
-font-size:16px;
-}
-
-.login-box button{
-width:100%;
-padding:12px;
-background:#e91e63;
-color:#fff;
-border:none;
-border-radius:8px;
-font-size:16px;
-cursor:pointer;
-}
-
-.coupon-box{
-width:90%;
-margin:20px auto;
-background:#fff3cd;
-padding:15px;
-border-radius:12px;
-text-align:center;
-}
-
-.coupon-box input{
-width:70%;
-padding:10px;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
-.coupon-box button{
-padding:10px 15px;
-background:#28a745;
-color:#fff;
-border:none;
-border-radius:8px;
-cursor:pointer;
-}
-</style>
-
-<div class="login-box">
-<h2>👤 Login</h2>
-
-<input type="text" id="username" placeholder="Enter Name">
-
-<input type="password" id="password" placeholder="Enter Password">
-
-<button onclick="loginUser()">Login</button>
-
-</div>
-
-<div class="coupon-box">
-
-<h3>🎟️ Coupon Code</h3>
-
-<input type="text" id="coupon" placeholder="Enter Coupon">
-
-<button onclick="applyCoupon()">Apply</button>
-
-</div>
-
-<script>
-function loginUser(){
-let name=document.getElementById("username").value;
-
-if(name==""){
-alert("Please enter your name");
-}else{
-alert("Welcome "+name+" 🎉");
-}
-}
-
-function applyCoupon(){
-let code=document.getElementById("coupon").value.toUpperCase();
-
-if(code=="UPHAR10"){
-alert("🎉 Coupon Applied! 10% Discount");
-}else{
-alert("❌ Invalid Coupon");
-}
-}
-</script>
-    <style>
-.checkout-box{
-width:90%;
-margin:20px auto;
-background:#fff;
-padding:15px;
-border-radius:12px;
-box-shadow:0 2px 8px rgba(0,0,0,.2);
-}
-
-.checkout-box h2{
-color:#e91e63;
-text-align:center;
-margin-bottom:15px;
-}
-
-.checkout-box input,
-.checkout-box textarea,
-.checkout-box select{
-width:100%;
-padding:12px;
-margin:8px 0;
-border:1px solid #ccc;
-border-radius:8px;
-font-size:16px;
-}
-
-.checkout-box button{
-width:100%;
-padding:14px;
-background:#4CAF50;
-color:#fff;
-border:none;
-border-radius:8px;
-font-size:18px;
-cursor:pointer;
-}
-</style>
-
-<div class="checkout-box">
-<h2>📦 Checkout</h2>
-
-<input type="text" id="fullname" placeholder="Full Name">
-
-<input type="tel" id="mobile" placeholder="Mobile Number">
-
-<textarea id="address" placeholder="Full Address"></textarea>
-
-<select id="payment">
-<option>Cash on Delivery</option>
-<option>Google Pay</option>
-<option>PhonePe</option>
-<option>Paytm</option>
-</select>
-
-<button onclick="placeOrder()">Place Order</button>
-</div>
-
-<script>
-
-return;
-}
-
-alert(
-"🎉 Order Placed Successfully!\n\n"+
-"Name: "+name+
-"\nPhone: "+phone+
-"\nPayment: "+payment
-);
-
-    <script
-        type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCyFbpDhJLqQU3cLsEGnPL-rxBZrI4r7Dw",
-  authDomain: "upharshringar-and-gifts.firebaseapp.com",
-  projectId: "upharshringar-and-gifts",
-  storageBucket: "upharshringar-and-gifts.firebasestorage.app",
-  messagingSenderId: "88460516528",
-  appId: "1:88460516528:web:85e6b26ef08da70f9bef75",
-  measurementId: "G-L9LGTEW9ZX"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-window.placeOrder = async function () {
-
-  const name = document.getElementById("fullname").value;
-  const phone = document.getElementById("mobile").value;
-  const address = document.getElementById("address").value;
-  const payment = document.getElementById("payment").value;
-
-  if (!name || !phone || !address) {
-    alert("⚠️ Please fill all details");
-    return;
-  }
-
-  try {
-    await addDoc(collection(db, "orders"), {
-      name,
-      phone,
-      address,
-      payment,
-      createdAt: new Date()
-    });
-
-    alert("✅ Order Saved Successfully!");
-
-    document.getElementById("fullname").value = "";
-    document.getElementById("mobile").value = "";
-    document.getElementById("address").value = "";
-
-  } catch (err) {
-    alert("Error: " + err.message);
-  }
-
-};
-
-</script>
-
-<div id="cartPanel" style="position:fixed;left:10px;bottom:10px;background:white;padding:10px;border:1px solid #ccc;">
-  <h3>🛒 Cart</h3>
-  <div id="cartItems">No items</div>
-  <p><b>Total: ₹<span id="cartTotal">0</span></b></p>
-</div>
-
-<script>
-<script>
-let cart = [];
-let total = 0;
-
-function addToCart(btn){
-
-const card = btn.parentElement;
-const name = card.querySelector("h3").innerText;
-const price = parseInt(card.querySelector(".price").innerText.replace("₹",""));
-
-cart.push({name,price});
-total += price;
-
-document.getElementById("cartTotal").innerText = total;
-
-document.getElementById("cartItems").innerHTML =
-cart.map(item => "• " + item.name + " - ₹" + item.price).join("<br>");
-
-alert(name + " Added To Cart");
-}
-</script>
-</body>
-</html>
