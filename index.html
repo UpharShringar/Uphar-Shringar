@@ -372,7 +372,12 @@ document.getElementById("cartTotal").innerText = "0";
 </script>
   <script type="module">
     
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
 const firebaseConfig = {
   apiKey: "AIzaSyCyFbpDhJLqQU3cLsEGnPL-rxBZrI4r7Dw",
@@ -423,10 +428,16 @@ const db = getFirestore(app);
   }
 
 };
-window.uploadProduct = async function ( const formData = new FormData();
-formData.append("file", file);
-formData.append("upload_preset", "uphar_upload");
 
+window.uploadProduct = async function () {
+
+  const file = document.getElementById("productImage").files[0];
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "uphar_upload");
+
+  // आगे का कोड...
 const response = await fetch(
   "https://api.cloudinary.com/v1_1/rms6dpzs/image/upload",
   {
@@ -436,12 +447,11 @@ const response = await fetch(
 );
 
 const data = await response.json();
-const imageUrl = data.secure_url;  ) {
-
+const imageUrl = data.secure_url;
+  
   const name = document.getElementById("productName").value;
   const price = document.getElementById("productPrice").value;
   const offerPrice = document.getElementById("offerPrice").value;
-  const file = document.getElementById("productImage").files[0];
 
   if (!name || !price || !file) {
     alert("⚠️ Please fill all details");
@@ -451,14 +461,17 @@ const imageUrl = data.secure_url;  ) {
   try {
 
 
-    await addDoc(collection(db, "products"), {
-      name: name,
-      price: Number(price),
-      offerPrice: Number(offerPrice || 0),
-      image: imageUrl,
-      createdAt: new Date().toISOString()
-    });
-
+    
+    
+await addDoc(collection(db, "products"), {
+  name: name,
+  price: Number(price),
+  offerPrice: Number(offerPrice || 0),
+  image: imageUrl,
+  createdAt: new Date().toISOString(),
+  status: "active"
+});
+    
     alert("✅ Product Uploaded Successfully!");
 
     document.getElementById("productName").value = "";
@@ -472,11 +485,6 @@ const imageUrl = data.secure_url;  ) {
 
 };
     </script>
-
-<hr>
-
-<h2>🛠 Admin Product Upload</h2>
-
 
 <hr>
 
