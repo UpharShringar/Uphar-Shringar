@@ -460,7 +460,6 @@ const imageUrl = data.secure_url;
 
   try {
 
-
     
     
 await addDoc(collection(db, "products"), {
@@ -477,15 +476,14 @@ await addDoc(collection(db, "products"), {
     document.getElementById("productName").value = "";
     document.getElementById("productPrice").value = "";
     document.getElementById("offerPrice").value = "";
-    document.getElementById("productImage").value = "";
+document.getElementById("productImage").value = "";
 
-  } catch (e) {
-    alert("❌ Upload Error: " + e.message);
-  }
+} catch (e) {
+  alert("❌ Upload Error: " + e.message);
+}
 
 };
-    </script>
-
+</script>
 <hr>
 
 <h2>🛠 Admin Product Upload</h2>
