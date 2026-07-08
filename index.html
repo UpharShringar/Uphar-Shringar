@@ -138,6 +138,12 @@ cursor:pointer;
 <div class="category">
 
 <h2>🛍 Products</h2>
+  <input
+type="text"
+id="searchBox"
+placeholder="🔍 Search Product..."
+onkeyup="loadProducts()"
+style="width:100%;padding:12px;margin:15px 0;border:2px solid #e91e63;border-radius:8px;">
 
 <div id="products" class="products">
   </div>
@@ -379,6 +385,9 @@ window.placeOrder = async function () {
 <div class="card">
 <img src="${p.image}">
 <h3>${p.name}</h3>
+<p style="color:#666;font-size:14px;">
+📂 ${p.category || "General"}
+</p>
 ${p.offerPrice > 0 ? `
 <div class="badge">
 🔥 ${Math.round((1 - p.offerPrice / p.price) * 100)}% OFF
