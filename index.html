@@ -236,6 +236,11 @@ let total = 0;
 
   document.getElementById("cartTotal").innerText = total;
 
+  if (cart.length === 0) {
+    document.getElementById("cartItems").innerHTML = "No items in cart";
+    return;
+  }
+
   document.getElementById("cartItems").innerHTML =
     cart.map(item =>
       `• ${item.name} × ${item.qty} = ₹${item.price * item.qty}`
@@ -244,21 +249,35 @@ let total = 0;
 }
 
 function addToCart(name, price) {
-  cart.push({ name, price });
-  total += Number(price);
 
-  document.getElementById("cartTotal").innerText = total;
+  const item = cart.find(p => p.name === name);
 
-  document.getElementById("cartItems").innerHTML =
-    cart.map(item => "• " + item.name + " - ₹" + item.price).join("<br>");
+  if (item) {
+    item.qty++;
+  } else {
+    cart.push({
+      name: name,
+      price: Number(price),
+      qty: 1
+    });
+  }
+
+  total = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.qty;
+  });
+
+  renderCart();
 }
 
 function clearCart() {
+
   cart = [];
   total = 0;
 
-  document.getElementById("cartItems").innerHTML = "No items in cart";
-  document.getElementById("cartTotal").innerText = "0";
+  renderCart();
+
 }
 </script>
 
