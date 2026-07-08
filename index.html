@@ -545,6 +545,25 @@ window.deleteProduct = async function(id) {
   }
 
 };
+  window.deleteOrder = async function(id) {
+
+  if (!confirm("Delete this order?")) return;
+
+  try {
+
+    await deleteDoc(doc(db, "orders", id));
+
+    alert("✅ Order Deleted");
+
+    loadOrders();
+
+  } catch (e) {
+
+    alert("❌ " + e.message);
+
+  }
+
+};
   async function loadOrders() {
 
   const q = query(
@@ -573,7 +592,13 @@ window.deleteProduct = async function(id) {
 
 💳 ${o.payment}<br>
 
-💰 Total: ₹${o.total}
+💰 Total: ₹${o.total}<br><br>
+
+<button
+onclick="deleteOrder('${doc.id}')"
+style="background:red;color:white;padding:8px 15px;border:none;border-radius:5px;">
+🗑 Delete Order
+</button>
 
 </div>
 `;
