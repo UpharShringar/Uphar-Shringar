@@ -242,9 +242,21 @@ let total = 0;
   }
 
   document.getElementById("cartItems").innerHTML =
-    cart.map(item =>
-      `• ${item.name} × ${item.qty} = ₹${item.price * item.qty}`
-    ).join("<br>");
+    cart.map(item => `
+<div style="margin-bottom:10px;border-bottom:1px solid #ddd;padding-bottom:8px;">
+
+<b>${item.name}</b><br>
+
+<button onclick="changeQty('${item.name}',-1)">➖</button>
+
+<b style="padding:0 10px;">${item.qty}</b>
+
+<button onclick="changeQty('${item.name}',1)">➕</button>
+
+&nbsp;&nbsp; ₹${item.price * item.qty}
+
+</div>
+`).join("<br>");
 
 }
 
@@ -279,6 +291,27 @@ function clearCart() {
   renderCart();
 
 }
+    function changeQty(name, change) {
+
+  const item = cart.find(p => p.name === name);
+
+  if (!item) return;
+
+  item.qty += change;
+
+  if (item.qty <= 0) {
+    cart = cart.filter(p => p.name !== name);
+  }
+
+  total = 0;
+
+  cart.forEach(item => {
+    total += item.price * item.qty;
+  });
+
+  renderCart();
+
+    }
 </script>
 
 <script type="module">
