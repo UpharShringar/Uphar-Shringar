@@ -363,7 +363,25 @@ style="margin-top:8px;background:red;color:white;width:100%;padding:10px;border:
   });
 
 }
+window.deleteProduct = async function(id) {
 
+  if (!confirm("Delete this product?")) return;
+
+  try {
+
+    await deleteDoc(doc(db, "products", id));
+
+    alert("✅ Product Deleted");
+
+    loadProducts();
+
+  } catch (e) {
+
+    alert("❌ " + e.message);
+
+  }
+
+};
 loadProducts();
 
 </script>
