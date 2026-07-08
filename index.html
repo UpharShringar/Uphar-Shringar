@@ -343,10 +343,17 @@ window.placeOrder = async function () {
 <div class="card">
 <img src="${p.image}">
 <h3>${p.name}</h3>
+${p.offerPrice > 0 ? `
+<div class="badge">
+🔥 ${Math.round((1 - p.offerPrice / p.price) * 100)}% OFF
+</div>
 
+<p class="old-price">₹${p.price}</p>
+
+<p class="offer">₹${p.offerPrice}</p>
+` : `
 <p class="price">₹${p.price}</p>
-
-${p.offerPrice > 0 ? `<p class="offer">Offer ₹${p.offerPrice}</p>` : ""}
+`}
 
 <button
 onclick="editProduct('${doc.id}','${p.name}',${p.price},${p.offerPrice || 0})"
