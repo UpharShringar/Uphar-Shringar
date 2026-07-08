@@ -232,6 +232,16 @@ No items in cart
   <script>
 let cart = [];
 let total = 0;
+    function renderCart() {
+
+  document.getElementById("cartTotal").innerText = total;
+
+  document.getElementById("cartItems").innerHTML =
+    cart.map(item =>
+      `• ${item.name} × ${item.qty} = ₹${item.price * item.qty}`
+    ).join("<br>");
+
+}
 
 function addToCart(name, price) {
   cart.push({ name, price });
@@ -421,7 +431,11 @@ style="margin-top:8px;background:red;color:white;width:100%;padding:10px;border:
 </div>
 `;
 
-  window.editProduct = async function(id, oldName, oldPrice, oldOffer) {
+  });
+
+}
+
+window.editProduct = async function(id, oldName, oldPrice, oldOffer) {
 
   const name = prompt("Product Name", oldName);
   if (name === null) return;
