@@ -545,8 +545,45 @@ window.deleteProduct = async function(id) {
   }
 
 };
+  async function loadOrders() {
+
+  const q = query(
+    collection(db, "orders"),
+    orderBy("createdAt", "desc")
+  );
+
+  const snap = await getDocs(q);
+
+  const orders = document.getElementById("orders");
+
+  orders.innerHTML = "";
+
+  snap.forEach(doc => {
+
+    const o = doc.data();
+
+    orders.innerHTML += `
+<div style="background:#fff;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #ddd;">
+
+<b>👤 ${o.customerName}</b><br>
+
+📞 ${o.mobile}<br>
+
+🏠 ${o.address}<br>
+
+💳 ${o.payment}<br>
+
+💰 Total: ₹${o.total}
+
+</div>
+`;
+
+  });
+
+}
 
 loadProducts();
+  loadOrders();
 
 </script>
 
