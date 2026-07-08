@@ -401,22 +401,25 @@ ${p.offerPrice > 0 ? `
 `}
 
 <button
+onclick="addToCart('${p.name}', ${p.offerPrice || p.price})"
+style="margin-top:8px;background:#e91e63;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
+🛒 Add to Cart
+</button>
+
+<button
 onclick="editProduct('${doc.id}','${p.name}',${p.price},${p.offerPrice || 0})"
 style="margin-top:8px;background:orange;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
-✏ Edit
+✏️ Edit
 </button>
 
 <button
 onclick="deleteProduct('${doc.id}')"
 style="margin-top:8px;background:red;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
-🗑 Delete
+🗑️ Delete
 </button>
 
 </div>
 `;
-
-  });
-}
 
   window.editProduct = async function(id, oldName, oldPrice, oldOffer) {
 
