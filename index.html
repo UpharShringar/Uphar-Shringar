@@ -347,8 +347,10 @@ window.placeOrder = async function () {
 
 ${p.offerPrice > 0 ? `<p class="offer">Offer ₹${p.offerPrice}</p>` : ""}
 
-<button onclick="addToCart('${p.name}', ${p.offerPrice || p.price})">
-🛒 Add to Cart
+<button
+onclick="editProduct('${doc.id}','${p.name}',${p.price},${p.offerPrice || 0})"
+style="margin-top:8px;background:orange;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
+✏ Edit
 </button>
 
 <button
