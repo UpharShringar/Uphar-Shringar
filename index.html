@@ -253,7 +253,7 @@ No items in cart
 </button>
   </div>
   <script>
-let isAdmin = false;
+window.isAdmin = false;
 let cart = [];
 let total = 0;
     function renderCart() {
@@ -341,7 +341,7 @@ function clearCart() {
   const password = document.getElementById("adminPassword").value;
 
   if (password === "12345") {
-    isAdmin = true;
+  window.isAdmin = true;
 
     document.getElementById("adminPanel").style.display = "block";
     document.getElementById("ordersPanel").style.display = "block";
@@ -515,8 +515,7 @@ onclick="addToCart('${p.name}', ${p.offerPrice || p.price})"
 style="margin-top:8px;background:#e91e63;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
 🛒 Add to Cart
 </button>
-
-${isAdmin ? `
+${window.isAdmin ? `
 <button
 onclick="editProduct('${doc.id}','${p.name}',${p.price},${p.offerPrice || 0})"
 style="margin-top:8px;background:orange;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
