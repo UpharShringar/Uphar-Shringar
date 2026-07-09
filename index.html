@@ -485,6 +485,8 @@ window.placeOrder = async function () {
   const snap = await getDocs(collection(db, "products"));
 
   const products = document.getElementById("products");
+      console.log("isAdmin =", isAdmin);
+alert("isAdmin = " + isAdmin);
 
   products.innerHTML = "";
 
