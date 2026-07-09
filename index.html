@@ -125,6 +125,21 @@ cursor:pointer;
 <body>
 
 <header>
+  <div id="adminLogin" style="text-align:center;padding:10px;background:#222;">
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Admin Password"
+style="padding:10px;border-radius:5px;border:1px solid #ccc;">
+
+<button
+onclick="adminLogin()"
+style="padding:10px 15px;background:#e91e63;color:#fff;border:none;border-radius:5px;">
+🔐 Login
+</button>
+
+  </div>
 💄 Uphar Shringar & Gifts
 </header>
 
@@ -213,6 +228,8 @@ No items in cart
 <div id="orders"></div>
 
 <br><br>
+<div id="adminPanel" style="display:none;">
+
 <h2>🛠 Admin Product Upload</h2>
 
 <input type="text" id="productName" placeholder="Product Name"><br><br>
@@ -235,6 +252,7 @@ No items in cart
 <button onclick="uploadProduct()">
 📤 Upload Product
 </button>
+  </div>
   <script>
 let cart = [];
 let total = 0;
