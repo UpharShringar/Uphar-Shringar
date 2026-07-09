@@ -136,27 +136,27 @@ style="padding:10px;border-radius:5px;border:1px solid #ccc;">
 <button
 onclick="adminLogin()"
 style="padding:10px 15px;background:#e91e63;color:#fff;border:none;border-radius:5px;">
-🔐 Login
+ðŸ” Login
 </button>
 
   </div>
-💄 Uphar Shringar & Gifts
+ðŸ’„ Uphar Shringar & Gifts
 </header>
 
 <div class="top-menu">
-<button>🏠 Home</button>
-<button>📂 Category</button>
-<button>🎁 Offers</button>
-<button>📞 Contact</button>
+<button>ðŸ  Home</button>
+<button>ðŸ“‚ Category</button>
+<button>ðŸŽ Offers</button>
+<button>ðŸ“ž Contact</button>
 </div>
 
 <div class="category">
 
-<h2>🛍 Products</h2>
+<h2>ðŸ› Products</h2>
   <input
 type="text"
 id="searchBox"
-placeholder="🔍 Search Product..."
+placeholder="ðŸ” Search Product..."
 onkeyup="loadProducts()"
 style="width:100%;padding:12px;margin:15px 0;border:2px solid #e91e63;border-radius:8px;">
 
@@ -165,7 +165,7 @@ style="width:100%;padding:12px;margin:15px 0;border:2px solid #e91e63;border-rad
 
 <div id="cartPanel" style="position:fixed;right:10px;bottom:10px;width:300px;background:#fff;border:2px solid #e91e63;border-radius:10px;padding:10px;box-shadow:0 0 10px rgba(0,0,0,.2);">
 
-<h3>🛒 Shopping Cart</h3>
+<h3>ðŸ›’ Shopping Cart</h3>
 
 <div id="cartItems">
 No items in cart
@@ -173,17 +173,17 @@ No items in cart
 
 <hr>
 
-<p><b>Total: ₹<span id="cartTotal">0</span></b></p>
+<p><b>Total: â‚¹<span id="cartTotal">0</span></b></p>
 
 <button onclick="clearCart()" style="width:100%;padding:10px;background:red;color:white;border:none;border-radius:5px;">
-🗑️ Clear Cart
+ðŸ—‘ï¸ Clear Cart
 </button>
 
 </div>
 
 <br><br><br>
 
-<h2>📦 Checkout</h2>
+<h2>ðŸ“¦ Checkout</h2>
 
 <input id="fullname" type="text" placeholder="Full Name"><br><br>
 
@@ -201,14 +201,14 @@ No items in cart
 <br><br>
 
 <button onclick="placeOrder()">
-✅ Place Order
+âœ… Place Order
 </button>
 
 <br><br>
 
 <a href="https://g.page/r/CZgUfg_j1lIwEAE/review" target="_blank">
 <button style="background:#4CAF50;color:white;padding:10px 20px;border:none;border-radius:5px;">
-⭐ Give Google Review
+â­ Give Google Review
 </button>
 </a>
 
@@ -216,20 +216,20 @@ No items in cart
 
 <a href="https://wa.me/919973750678" target="_blank">
 <button style="background:#25D366;color:white;padding:10px 20px;border:none;border-radius:5px;">
-💬 Chat on WhatsApp
+ðŸ’¬ Chat on WhatsApp
 </button>
 </a>
 
 <hr>
 <hr><br>
 <div id="ordersPanel" style="display:none;">
-<h2>📋 Customer Orders</h2>
+<h2>ðŸ“‹ Customer Orders</h2>
 <div id="orders"></div>
 </div>
 <br><br>
 <div id="adminPanel" style="display:none;">
 
-<h2>🛠 Admin Product Upload</h2>
+<h2>ðŸ›  Admin Product Upload</h2>
 
 <input type="text" id="productName" placeholder="Product Name"><br><br>
 
@@ -249,11 +249,11 @@ No items in cart
 
 <br><br>
 <button onclick="uploadProduct()">
-📤 Upload Product
+ðŸ“¤ Upload Product
 </button>
   </div>
   <script>
-window.isAdmin = false;
+let isAdmin = false;
 let cart = [];
 let total = 0;
     function renderCart() {
@@ -271,13 +271,13 @@ let total = 0;
 
 <b>${item.name}</b><br>
 
-<button onclick="changeQty('${item.name}',-1)">➖</button>
+<button onclick="changeQty('${item.name}',-1)">âž–</button>
 
 <b style="padding:0 10px;">${item.qty}</b>
 
-<button onclick="changeQty('${item.name}',1)">➕</button>
+<button onclick="changeQty('${item.name}',1)">âž•</button>
 
-&nbsp;&nbsp; ₹${item.price * item.qty}
+&nbsp;&nbsp; â‚¹${item.price * item.qty}
 
 </div>
 `).join("<br>");
@@ -341,7 +341,7 @@ function clearCart() {
   const password = document.getElementById("adminPassword").value;
 
   if (password === "12345") {
-  window.isAdmin = true;
+    isAdmin = true;
 
     document.getElementById("adminPanel").style.display = "block";
     document.getElementById("ordersPanel").style.display = "block";
@@ -350,11 +350,11 @@ function clearCart() {
     loadProducts();
     loadOrders();
 
-    alert("✅ Admin Login Successful");
+    alert("âœ… Admin Login Successful");
 }
       else {
         
-    alert("❌ Wrong Password");
+    alert("âŒ Wrong Password");
 
   }
 
@@ -396,7 +396,7 @@ window.placeOrder = async function () {
   const payment = document.getElementById("payment").value;
 
   if (!name || !phone || !address) {
-    alert("⚠️ Please fill all details");
+    alert("âš ï¸ Please fill all details");
     return;
   }
 
@@ -412,7 +412,7 @@ window.placeOrder = async function () {
       createdAt: new Date().toISOString()
     });
 
-    alert("✅ Order Placed Successfully!");
+    alert("âœ… Order Placed Successfully!");
 
     clearCart();
 
@@ -421,7 +421,7 @@ window.placeOrder = async function () {
     document.getElementById("address").value = "";
 
   } catch (e) {
-    alert("❌ " + e.message);
+    alert("âŒ " + e.message);
     }
   };
     window.uploadProduct = async function () {
@@ -433,7 +433,7 @@ window.placeOrder = async function () {
   const file = document.getElementById("productImage").files[0];
 
   if (!name || !price || !file) {
-    alert("⚠️ Please fill all details");
+    alert("âš ï¸ Please fill all details");
     return;
   }
 
@@ -454,7 +454,7 @@ window.placeOrder = async function () {
     const data = await response.json();
 
     if (!data.secure_url) {
-      alert("❌ Image Upload Failed");
+      alert("âŒ Image Upload Failed");
       return;
     }
 
@@ -468,7 +468,7 @@ window.placeOrder = async function () {
       status: "active"
     });
 
-    alert("✅ Product Uploaded Successfully!");
+    alert("âœ… Product Uploaded Successfully!");
 
     document.getElementById("productName").value = "";
     document.getElementById("productPrice").value = "";
@@ -477,7 +477,7 @@ window.placeOrder = async function () {
     document.getElementById("productImage").value = "";
 
   } catch (e) {
-    alert("❌ " + e.message);
+    alert("âŒ " + e.message);
   }
       };
     async function loadProducts() {
@@ -496,36 +496,37 @@ window.placeOrder = async function () {
 <img src="${p.image}">
 <h3>${p.name}</h3>
 <p style="color:#666;font-size:14px;">
-📂 ${p.category || "General"}
+ðŸ“‚ ${p.category || "General"}
 </p>
 ${p.offerPrice > 0 ? `
 <div class="badge">
-🔥 ${Math.round((1 - p.offerPrice / p.price) * 100)}% OFF
+ðŸ”¥ ${Math.round((1 - p.offerPrice / p.price) * 100)}% OFF
 </div>
 
-<p class="old-price">₹${p.price}</p>
+<p class="old-price">â‚¹${p.price}</p>
 
-<p class="offer">₹${p.offerPrice}</p>
+<p class="offer">â‚¹${p.offerPrice}</p>
 ` : `
-<p class="price">₹${p.price}</p>
+<p class="price">â‚¹${p.price}</p>
 `}
 
 <button
 onclick="addToCart('${p.name}', ${p.offerPrice || p.price})"
 style="margin-top:8px;background:#e91e63;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
-🛒 Add to Cart
+ðŸ›’ Add to Cart
 </button>
-${window.isAdmin ? `
+
+${isAdmin ? `
 <button
 onclick="editProduct('${doc.id}','${p.name}',${p.price},${p.offerPrice || 0})"
 style="margin-top:8px;background:orange;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
-✏️ Edit
+âœï¸ Edit
 </button>
 
 <button
 onclick="deleteProduct('${doc.id}')"
 style="margin-top:8px;background:red;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
-🗑️ Delete
+ðŸ—‘ï¸ Delete
 </button>
 ` : ""}
 
@@ -555,13 +556,13 @@ window.editProduct = async function(id, oldName, oldPrice, oldOffer) {
       offerPrice: Number(offer)
     });
 
-    alert("✅ Product Updated");
+    alert("âœ… Product Updated");
 
     loadProducts();
 
   } catch (e) {
 
-    alert("❌ " + e.message);
+    alert("âŒ " + e.message);
 
   }
 
@@ -575,13 +576,13 @@ window.deleteProduct = async function(id) {
 
     await deleteDoc(doc(db, "products", id));
 
-    alert("✅ Product Deleted");
+    alert("âœ… Product Deleted");
 
     loadProducts();
 
   } catch (e) {
 
-    alert("❌ " + e.message);
+    alert("âŒ " + e.message);
 
   }
 
@@ -594,13 +595,13 @@ window.deleteProduct = async function(id) {
 
     await deleteDoc(doc(db, "orders", id));
 
-    alert("✅ Order Deleted");
+    alert("âœ… Order Deleted");
 
     loadOrders();
 
   } catch (e) {
 
-    alert("❌ " + e.message);
+    alert("âŒ " + e.message);
 
   }
 
@@ -625,20 +626,20 @@ window.deleteProduct = async function(id) {
     orders.innerHTML += `
 <div style="background:#fff;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #ddd;">
 
-<b>👤 ${o.customerName}</b><br>
+<b>ðŸ‘¤ ${o.customerName}</b><br>
 
-📞 ${o.mobile}<br>
+ðŸ“ž ${o.mobile}<br>
 
-🏠 ${o.address}<br>
+ðŸ  ${o.address}<br>
 
-💳 ${o.payment}<br>
+ðŸ’³ ${o.payment}<br>
 
-💰 Total: ₹${o.total}<br><br>
+ðŸ’° Total: â‚¹${o.total}<br><br>
 
 <button
 onclick="deleteOrder('${doc.id}')"
 style="background:red;color:white;padding:8px 15px;border:none;border-radius:5px;">
-🗑 Delete Order
+ðŸ—‘ Delete Order
 </button>
 
 </div>
