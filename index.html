@@ -342,6 +342,8 @@ function clearCart() {
   const password = document.getElementById("adminPassword").value;
 
   if (password === "12345") {
+    isAdmin = true;
+loadProducts();
 
     document.getElementById("adminPanel").style.display = "block";
     document.getElementById("adminLogin").style.display = "none";
