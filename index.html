@@ -254,6 +254,7 @@ No items in cart
 </button>
   </div>
   <script>
+let isAdmin = false;
 let cart = [];
 let total = 0;
     function renderCart() {
@@ -334,6 +335,24 @@ function clearCart() {
   });
 
   renderCart();
+
+    }
+    function adminLogin() {
+
+  const password = document.getElementById("adminPassword").value;
+
+  if (password === "12345") {
+
+    document.getElementById("adminPanel").style.display = "block";
+    document.getElementById("adminLogin").style.display = "none";
+
+    alert("✅ Admin Login Successful");
+
+  } else {
+
+    alert("❌ Wrong Password");
+
+  }
 
     }
 </script>
