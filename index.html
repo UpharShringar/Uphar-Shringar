@@ -253,7 +253,7 @@ No items in cart
 </button>
   </div>
   <script>
-let isAdmin = false;
+window.isAdmin = false;
 let cart = [];
 let total = 0;
     function renderCart() {
@@ -341,7 +341,7 @@ function clearCart() {
   const password = document.getElementById("adminPassword").value;
 
   if (password === "12345") {
-    isAdmin = true;
+    window.isAdmin = true;
 
     document.getElementById("adminPanel").style.display = "block";
     document.getElementById("ordersPanel").style.display = "block";
