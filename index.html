@@ -485,9 +485,7 @@ window.placeOrder = async function () {
   const snap = await getDocs(collection(db, "products"));
 
   const products = document.getElementById("products");
-      console.log("isAdmin =", isAdmin);
-alert("isAdmin = " + isAdmin);
-
+    
   products.innerHTML = "";
 
   snap.forEach(doc => {
@@ -518,7 +516,7 @@ style="margin-top:8px;background:#e91e63;color:white;width:100%;padding:10px;bor
 ðŸ›’ Add to Cart
 </button>
 
-${isAdmin ? `
+${window.isAdmin ? `
 <button
 onclick="editProduct('${doc.id}','${p.name}',${p.price},${p.offerPrice || 0})"
 style="margin-top:8px;background:orange;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
