@@ -1,1 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uphar Shringar & Gifts</title>
 
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#fff5f7;
+}
+
+header{
+background:#e91e63;
+color:white;
+padding:15px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.top-menu{
+display:flex;
+justify-content:space-around;
+background:white;
+padding:10px;
+position:sticky;
+top:60px;
+z-index:999;
+box-shadow:0 2px 5px rgba(0,0,0,.2);
+}
+
+.top-menu button{
+padding:10px 15px;
+border:none;
+border-radius:6px;
+background:#e91e63;
+color:white;
+cursor:pointer;
+}
+
+.category{
+padding:20px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+}
+
+.card{
+background:white;
+border-radius:10px;
+padding:10px;
+text-align:center;
+box-shadow:0 2px 6px rgba(0,0,0,.2);
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.price{
+font-size:20px;
+font-weight:bold;
+color:green;
+}
+
+.offer{
+color:red;
+font-weight:bold;
+}
+
+.card button{
+margin-top:10px;
+padding:10px;
+width:100%;
+background:#e91e63;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+💄 Uphar Shringar & Gifts
+</header>
+
+<div class="top-menu">
+<button>🏠 Home</button>
+<button>📂 Category</button>
+<button>🎁 Offers</button>
+<button>📞 Contact</button>
+</div>
+
+<div class="category">
+
+<h2>🛍 Products</h2>
+
+<div id="products" class="products">
+  </div>
+
+<div id="cartPanel" style="position:fixed;right:10px;bottom:10px;width:300px;background:#fff;border:2px solid #e91e63;border-radius:10px;padding:10px;box-shadow:0 0 10px rgba(0,0,0,.2);">
+
+<h3>🛒 Shopping Cart</h3>
+
+<div id="cartItems">
+No items in cart
+</div>
+
+<hr>
+
+<p><b>Total: ₹<span id="cartTotal">0</span></b></p>
+
+<button onclick="clearCart()" style="width:100%;padding:10px;background:red;color:white;border:none;border-radius:5px;">
+🗑️ Clear Cart
+</button>
+
+</div>
+
+<br><br><br>
+
+<h2>📦 Checkout</h2>
+
+<input id="fullname" type="text" placeholder="Full Name"><br><br>
+
+<input id="mobile" type="tel" placeholder="Mobile Number"><br><br>
+
+<textarea id="address" placeholder="Full Address"></textarea><br><br>
+
+<select id="payment">
+<option>Cash on Delivery</option>
+<option>Google Pay</option>
+<option>PhonePe</option>
+<option>Paytm</option>
+</select>
+
+<br><br>
+
+<button onclick="placeOrder()">
+✅ Place Order
+</button>
+
+<br><br>
+
+<a href="https://g.page/r/CZgUfg_j1lIwEAE/review" target="_blank">
+<button style="background:#4CAF50;color:white;padding:10px 20px;border:none;border-radius:5px;">
+⭐ Give Google Review
+</button>
+</a>
+
+<br><br>
+
+<a href="https://wa.me/919973750678" target="_blank">
+<button style="background:#25D366;color:white;padding:10px 20px;border:none;border-radius:5px;">
+💬 Chat on WhatsApp
+</button>
+</a>
+
+<hr>
+
+<h2>🛠 Admin Product Upload</h2>
+
+<input type="text" id="productName" placeholder="Product Name"><br><br>
+
+<input type="number" id="productPrice" placeholder="Price"><br><br>
+
+<input type="number" id="offerPrice" placeholder="Offer Price"><br><br>
+
+<input type="file" id="productImage"><br><br>
+
+<button onclick="uploadProduct()">
+📤 Upload Product
+</button>
+  <script>
+let cart = [];
+let total = 0;
+
+function addToCart(name, price) {
+  cart.push({ name, price });
+  total += Number(price);
+
+  document.getElementById("cartTotal").innerText = total;
+
+  document.getElementById("cartItems").innerHTML =
+    cart.map(item => "• " + item.name + " - ₹" + item.price).join("<br>");
+}
+
+function clearCart() {
+  cart = [];
+  total = 0;
+
+  document.getElementById("cartItems").innerHTML = "No items in cart";
+  document.getElementById("cartTotal").innerText = "0";
+}
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCyFbpDhJLqQU3cLsEGnPL-rxBZrI4r7Dw",
+  authDomain: "upharshringar-and-gifts.firebaseapp.com",
+  projectId: "upharshringar-and-gifts",
+  storageBucket: "upharshringar-and-gifts.firebasestorage.app",
+  messagingSenderId: "88460516528",
+  appId: "1:88460516528:web:85e6b26ef08da70f9bef75",
+  measurementId: "G-L9LGTEW9ZX"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+  
+window.placeOrder = async function () {
+
+  const name = document.getElementById("fullname").value;
+  const phone = document.getElementById("mobile").value;
+  const address = document.getElementById("address").value;
+  const payment = document.getElementById("payment").value;
+
+  if (!name || !phone || !address) {
+    alert("⚠️ Please fill all details");
+    return;
+  }
+
+  try {
+
+    await addDoc(collection(db, "orders"), {
+      customerName: name,
+      mobile: phone,
+      address: address,
+      payment: payment,
+      cart: cart,
+      total: total,
+      createdAt: new Date().toISOString()
+    });
+
+    alert("✅ Order Placed Successfully!");
+
+    clearCart();
+
+    document.getElementById("fullname").value = "";
+    document.getElementById("mobile").value = "";
+    document.getElementById("address").value = "";
+
+  } catch (e) {
+    alert("❌ " + e.message);
+    }
+  };
+    window.uploadProduct = async function () {
+
+  const name = document.getElementById("productName").value;
+  const price = document.getElementById("productPrice").value;
+  const offerPrice = document.getElementById("offerPrice").value;
+  const file = document.getElementById("productImage").files[0];
+
+  if (!name || !price || !file) {
+    alert("⚠️ Please fill all details");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "uphar_upload");
+
+  try {
+
+    const response = await fetch(
+      "https://api.cloudinary.com/v1_1/rms6dpzs/image/upload",
+      {
+        method: "POST",
+        body: formData
+      }
+    );
+
+    const data = await response.json();
+
+    if (!data.secure_url) {
+      alert("❌ Image Upload Failed");
+      return;
+    }
+
+    await addDoc(collection(db, "products"), {
+      name: name,
+      price: Number(price),
+      offerPrice: Number(offerPrice || 0),
+      image: data.secure_url,
+      createdAt: new Date().toISOString(),
+      status: "active"
+    });
+
+    alert("✅ Product Uploaded Successfully!");
+
+    document.getElementById("productName").value = "";
+    document.getElementById("productPrice").value = "";
+    document.getElementById("offerPrice").value = "";
+    document.getElementById("productImage").value = "";
+
+  } catch (e) {
+    alert("❌ " + e.message);
+  }
+      };
+    async function loadProducts() {
+
+  const snap = await getDocs(collection(db, "products"));
+
+  const products = document.getElementById("products");
+
+  products.innerHTML = "";
+
+  snap.forEach(doc => {
+
+    const p = doc.data();
+
+    products.innerHTML += `
+<div class="card">
+<img src="${p.image}">
+<h3>${p.name}</h3>
+
+<p class="price">₹${p.price}</p>
+
+${p.offerPrice > 0 ? `<p class="offer">Offer ₹${p.offerPrice}</p>` : ""}
+
+<button onclick="addToCart('${p.name}', ${p.offerPrice || p.price})">
+🛒 Add to Cart
+</button>
+
+<button
+onclick="deleteProduct('${doc.id}')"
+style="margin-top:8px;background:red;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
+🗑 Delete
+</button>
+
+</div>
+`;
+
+  });
+
+}
+window.deleteProduct = async function(id) {
+
+  if (!confirm("Delete this product?")) return;
+
+  try {
+
+    await deleteDoc(doc(db, "products", id));
+
+    alert("✅ Product Deleted");
+
+    loadProducts();
+
+  } catch (e) {
+
+    alert("❌ " + e.message);
+
+  }
+
+};
+loadProducts();
+
+</script>
+
+</body>
+</html>
