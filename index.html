@@ -207,7 +207,7 @@ No items in cart
 📤 Upload Product
 </button>
   <script>
-    let isAdmin = false;
+  window.isAdmin = false;
 
 function adminLogin() {
 
@@ -218,7 +218,7 @@ function adminLogin() {
     document.getElementById("adminPanel").style.display = "block";
     
 
-    isAdmin = true;
+    window.isAdmin = true;
 
     document.getElementById("adminLogin").style.display = "none";
 
@@ -394,7 +394,7 @@ ${p.offerPrice > 0 ? `<p class="offer">Offer ₹${p.offerPrice}</p>` : ""}
 🛒 Add to Cart
  </button>
  
-${isAdmin ? `
+${window.isAdmin ? `
 <button
 onclick="editProduct('${doc.id}','${p.name}',${p.price},${p.offerPrice || 0})"
 style="margin-top:8px;background:orange;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
