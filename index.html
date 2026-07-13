@@ -191,6 +191,7 @@ No items in cart
 </a>
 
 <hr>
+  <div id="adminPanel" style="display:none;">
 
 <h2>🛠 Admin Product Upload</h2>
 
@@ -213,6 +214,9 @@ function adminLogin() {
   const password = document.getElementById("adminPassword").value;
 
   if (password === "12345") {
+    
+    document.getElementById("adminPanel").style.display = "block";
+    
 
     isAdmin = true;
 
