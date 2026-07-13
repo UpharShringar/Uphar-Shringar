@@ -393,7 +393,11 @@ ${p.offerPrice > 0 ? `<p class="offer">Offer ₹${p.offerPrice}</p>` : ""}
 <button onclick="addToCart('${p.name}', ${p.offerPrice || p.price})">
 🛒 Add to Cart
 </button>
-
+<button
+onclick="editProduct('${doc.id}','${p.name}',${p.price},${p.offerPrice || 0})"
+style="margin-top:8px;background:orange;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
+✏️ Edit
+</button>
 <button
 onclick="deleteProduct('${doc.id}')"
 style="margin-top:8px;background:red;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
