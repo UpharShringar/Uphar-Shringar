@@ -101,6 +101,21 @@ cursor:pointer;
 <body>
 
 <header>
+  <div id="adminLogin" style="text-align:center;padding:10px;background:#222;">
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Admin Password"
+style="padding:10px;border-radius:5px;border:1px solid #ccc;">
+
+<button
+onclick="adminLogin()"
+style="padding:10px 15px;background:#e91e63;color:#fff;border:none;border-radius:5px;">
+🔐 Login
+</button>
+
+  </div>
 💄 Uphar Shringar & Gifts
 </header>
 
@@ -191,6 +206,29 @@ No items in cart
 📤 Upload Product
 </button>
   <script>
+    let isAdmin = false;
+
+function adminLogin() {
+
+  const password = document.getElementById("adminPassword").value;
+
+  if (password === "12345") {
+
+    isAdmin = true;
+
+    document.getElementById("adminLogin").style.display = "none";
+
+    loadProducts();
+
+    alert("✅ Admin Login Successful");
+
+  } else {
+
+    alert("❌ Wrong Password");
+
+  }
+
+}
 let cart = [];
 let total = 0;
 
@@ -219,7 +257,7 @@ import {
   getFirestore,
   collection,
   addDoc,
-  getDocs
+  getDocs,
   deleteDoc,
   doc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
