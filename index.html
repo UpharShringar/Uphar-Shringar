@@ -222,7 +222,7 @@ function adminLogin() {
 
     document.getElementById("adminLogin").style.display = "none";
 
-    loadProducts();
+    window.loadProducts();
 
     alert("✅ Admin Login Successful");
 
@@ -369,7 +369,7 @@ window.placeOrder = async function () {
     alert("❌ " + e.message);
   }
       };
-    async function loadProducts() {
+    window.loadProducts = async function() {
 
   const snap = await getDocs(collection(db, "products"));
 
