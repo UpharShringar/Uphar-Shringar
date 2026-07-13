@@ -263,6 +263,7 @@ import {
   addDoc,
   getDocs,
   deleteDoc,
+  updateDoc,
   doc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
@@ -405,6 +406,34 @@ style="margin-top:8px;background:red;color:white;width:100%;padding:10px;border:
   });
 
 }
+  window.editProduct = async function(id, oldName, oldPrice, oldOffer) {
+
+  const name = prompt("Product Name", oldName);
+  if (name === null) return;
+
+  const price = prompt("Price", oldPrice);
+  if (price === null) return;
+
+  const offerPrice = prompt("Offer Price", oldOffer);
+  if (offerPrice === null) return;
+
+  try {
+
+    await updateDoc(doc(db, "products", id), {
+      name: name,
+      price: Number(price),
+      offerPrice: Number(offerPrice)
+    });
+
+    alert("✅ Product Updated");
+
+    loadProducts();
+
+  } catch (e) {
+    alert("❌ " + e.message);
+  }
+
+};
 window.deleteProduct = async function(id) {
 
   if (!confirm("Delete this product?")) return;
