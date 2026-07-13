@@ -394,16 +394,19 @@ ${p.offerPrice > 0 ? `<p class="offer">Offer ₹${p.offerPrice}</p>` : ""}
 🛒 Add to Cart
  </button>
  
+${isAdmin ? `
 <button
 onclick="editProduct('${doc.id}','${p.name}',${p.price},${p.offerPrice || 0})"
 style="margin-top:8px;background:orange;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
 ✏️ Edit
- </button>
+</button>
+
 <button
 onclick="deleteProduct('${doc.id}')"
 style="margin-top:8px;background:red;color:white;width:100%;padding:10px;border:none;border-radius:5px;">
 🗑 Delete
 </button>
+` : ""}
 
 </div>
 `;
