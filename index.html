@@ -247,7 +247,7 @@ function adminLogin() {
   }
 
 }
- window.isAdmin = isAdmin;
+
 let cart = [];
 let total = 0;
 
@@ -394,12 +394,16 @@ window.placeOrder = async function () {
       const isAdmin = window.isAdmin || false;
 
   snap.forEach(doc => {
-    if (
+  const p = doc.data();
+    const search = document.getElementById("searchBox").value.toLowerCase();
+const category = document.getElementById("filterCategory").value;
+
+if (
   (search && !p.name.toLowerCase().includes(search)) ||
   (category && p.category !== category)
 ) {
   return;
-    }
+}
 
     const p = doc.data();
 
