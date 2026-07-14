@@ -311,6 +311,7 @@ window.placeOrder = async function () {
 
     await addDoc(collection(db, "orders"), {
       customerName: name,
+      category: category,
       mobile: phone,
       address: address,
       payment: payment,
