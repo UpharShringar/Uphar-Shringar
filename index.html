@@ -498,34 +498,69 @@ style="margin-top:8px;background:red;color:white;width:100%;padding:10px;border:
   });
 
 }
-  window.editProduct = async function(id, oldName, oldPrice, oldOffer, oldImage) {
+window.editProduct = async function(id, oldName, oldPrice, oldOffer, oldImage) {
 
-  const name = prompt("Product Name", oldName);
-  if (name === null) return;
+const name = prompt("Product Name", oldName);
+if (name === null) return;
 
-  const price = prompt("Price", oldPrice);
-  if (price === null) return;
+const price = prompt("Price", oldPrice);
+if (price === null) return;
 
-  const offerPrice = prompt("Offer Price", oldOffer);
-  if (offerPrice === null) return;
-    const newImage = prompt("New Image URL (Leave blank to keep old image)");
+const offerPrice = prompt("Offer Price", oldOffer);
+if (offerPrice === null) return;
 
-  try {
+const input = document.createElement("input");
+input.type = "file";
+input.accept = "image/*";
 
-    await updateDoc(doc(db, "products", id), {
-  name: name,
-  price: Number(price),
-  offerPrice: Number(offerPrice),
-  image: newImage ? newImage : oldImage
+input.onchange = async () => {
+
+let imageUrl = oldImage;
+
+const file = input.files[0];
+
+if (file) {
+
+const formData = new FormData();
+formData.append("file", file);
+formData.append("upload_preset", "uphar_upload");
+
+const response = await fetch(
+"https://api.cloudinary.com/v1_1/rms6dpzs/image/upload",
+{
+method: "POST",
+body: formData
+}
+);
+
+const data = await response.json();
+
+if (data.secure_url) {
+imageUrl = data.secure_url;
+}
+
+}
+
+try {
+
+await updateDoc(doc(db, "products", id), {
+name: name,
+price: Number(price),
+offerPrice: Number(offerPrice),
+image: imageUrl
 });
 
-    alert("✅ Product Updated");
+alert("✅ Product Updated");
 
-    loadProducts();
+loadProducts();
 
-  } catch (e) {
-    alert("❌ " + e.message);
-  }
+} catch(e){
+alert("❌ " + e.message);
+}
+
+};
+
+input.click();
 
 };
 window.deleteProduct = async function(id) {
