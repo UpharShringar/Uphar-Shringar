@@ -498,7 +498,7 @@ style="margin-top:8px;background:red;color:white;width:100%;padding:10px;border:
   });
 
 }
-  window.editProduct = async function(id, oldName, oldPrice, oldOffer) {
+  window.editProduct = async function(id, oldName, oldPrice, oldOffer, oldImage)
 
   const name = prompt("Product Name", oldName);
   if (name === null) return;
@@ -513,10 +513,11 @@ style="margin-top:8px;background:red;color:white;width:100%;padding:10px;border:
   try {
 
     await updateDoc(doc(db, "products", id), {
-      name: name,
-      price: Number(price),
-      offerPrice: Number(offerPrice)
-    });
+  name: name,
+  price: Number(price),
+  offerPrice: Number(offerPrice),
+  image: newImage ? newImage : oldImage
+});
 
     alert("✅ Product Updated");
 
