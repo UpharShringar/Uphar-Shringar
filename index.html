@@ -311,7 +311,6 @@ window.placeOrder = async function () {
 
     await addDoc(collection(db, "orders"), {
       customerName: name,
-      category: category,
       mobile: phone,
       address: address,
       payment: payment,
@@ -367,6 +366,7 @@ window.placeOrder = async function () {
 
     await addDoc(collection(db, "products"), {
       name: name,
+      category: category,
       price: Number(price),
       offerPrice: Number(offerPrice || 0),
       image: data.secure_url,
