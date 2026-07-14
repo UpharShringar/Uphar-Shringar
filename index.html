@@ -508,6 +508,8 @@ if (price === null) return;
 
 const offerPrice = prompt("Offer Price", oldOffer);
 if (offerPrice === null) return;
+  
+  const category = prompt("Category", "Lipstick");
 
 const input = document.createElement("input");
 input.type = "file";
@@ -545,6 +547,7 @@ try {
 
 await updateDoc(doc(db, "products", id), {
 name: name,
+category: category,
 price: Number(price),
 offerPrice: Number(offerPrice),
 image: imageUrl
