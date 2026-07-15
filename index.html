@@ -570,18 +570,9 @@ ${p.stock > 0 ? '🟢 In Stock (' + p.stock + ')' : '🔴 Out of Stock'}
 </p>
 
 ${p.offerPrice > 0 ? `<p class="offer">Offer ₹${p.offerPrice}</p>` : ""}
-
-${(p.stock === undefined || p.stock > 0) ? `
 <button onclick="addToCart('${p.name}', ${p.offerPrice || p.price})">
 🛒 Add to Cart
 </button>
-` : `
-<button
-style="background:gray;cursor:not-allowed;"
-disabled>
-❌ Out of Stock
-</button>
-`}
  
 ${window.isAdmin ? `
 <button
