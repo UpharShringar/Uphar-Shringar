@@ -552,9 +552,13 @@ margin:5px 0;">
 ` : ""}
 
 ${p.offerPrice > 0 ? `
+<p style="text-decoration:line-through;color:gray;font-size:16px;">
+₹${p.price}
+</p>
 
 <p style="color:green;font-size:20px;font-weight:bold;">
 ₹${p.offerPrice}
+<p
 
 <p style="background:#ff5722;color:white;padding:4px;border-radius:5px;display:inline-block;">
 ${Math.round(((p.price-p.offerPrice)/p.price)*100)}% OFF
