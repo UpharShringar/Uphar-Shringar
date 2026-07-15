@@ -414,7 +414,18 @@ function addToCart(name, price) {
   document.getElementById("cartItems").innerHTML =
     cart.map(item => "• " + item.name + " - ₹" + item.price).join("<br>");
 }
+function buyNow(name, price){
 
+cart = [];
+total = 0;
+
+addToCart(name, price);
+
+document.getElementById("fullname").scrollIntoView({
+behavior:"smooth"
+});
+
+    }
 function clearCart() {
   cart = [];
   total = 0;
@@ -610,6 +621,11 @@ ${Math.round(((p.price-p.offerPrice)/p.price)*100)}% OFF
 <button onclick="addToCart('${p.name}', ${p.offerPrice || p.price})"
 style="margin-top:10px;width:100%;padding:10px;background:#e91e63;color:white;border:none;border-radius:5px;">
 🛒 Add to Cart
+</button>
+<button
+onclick="buyNow('${p.name}', ${p.offerPrice || p.price})"
+style="margin-top:8px;width:100%;padding:10px;background:#4CAF50;color:white;border:none;border-radius:5px;">
+⚡ Buy Now
 </button>
 ` : ""}
 <div style="display:flex;justify-content:center;align-items:center;gap:8px;margin-top:10px;">
