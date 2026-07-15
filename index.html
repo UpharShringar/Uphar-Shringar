@@ -565,9 +565,7 @@ ${p.offerPrice > 0 ? `
 ${Math.round(((p.price-p.offerPrice)/p.price)*100)}% OFF
 </p>
 ` : ""}
-<p style="color:${p.stock > 0 ? 'green' : 'red'};font-weight:bold;">
-${p.stock > 0 ? '🟢 In Stock (' + p.stock + ')' : '🔴 Out of Stock'}
-</p>
+
 
 ${p.offerPrice > 0 ? `<p class="offer">Offer ₹${p.offerPrice}</p>` : ""}
 <button onclick="addToCart('${p.name}', ${p.offerPrice || p.price})">
