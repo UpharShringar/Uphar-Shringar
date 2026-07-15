@@ -117,8 +117,57 @@ style="padding:10px 15px;background:#e91e63;color:#fff;border:none;border-radius
 </button>
 
   </div>
+  <div id="menuBtn"
+onclick="toggleMenu()"
+style="
+position:absolute;
+left:15px;
+top:15px;
+font-size:28px;
+cursor:pointer;
+color:white;">
+☰
+</div>
 💄 Uphar Shringar & Gifts 🎁 
 </header>
+  <div id="sideMenu"
+style="
+height:100%;
+width:0;
+position:fixed;
+z-index:9999;
+top:0;
+left:0;
+background:#fff;
+overflow-x:hidden;
+transition:.3s;
+box-shadow:2px 0 10px rgba(0,0,0,.3);">
+
+<div style="padding:20px;font-size:22px;font-weight:bold;background:#e91e63;color:white;">
+☰ Menu
+<span
+onclick="toggleMenu()"
+style="float:right;cursor:pointer;">✖</span>
+</div>
+
+<a href="#adminLogin"
+style="display:block;padding:15px;text-decoration:none;color:black;">
+🔐 Admin Login
+</a>
+
+<a href="https://maps.app.goo.gl/6jkz4VJchJSj6vPj8"
+target="_blank"
+style="display:block;padding:15px;text-decoration:none;color:black;">
+📍 Google Location
+</a>
+
+<a href="https://wa.me/919973750678"
+target="_blank"
+style="display:block;padding:15px;text-decoration:none;color:black;">
+💬 WhatsApp
+</a>
+
+  </div>
 
 <div class="top-menu">
 <button>🏠 Home</button>
@@ -424,6 +473,17 @@ addToCart(name, price);
 document.getElementById("fullname").scrollIntoView({
 behavior:"smooth"
 });
+
+    }
+    function toggleMenu(){
+
+const menu=document.getElementById("sideMenu");
+
+if(menu.style.width=="250px"){
+menu.style.width="0";
+}else{
+menu.style.width="250px";
+}
 
     }
 function clearCart() {
