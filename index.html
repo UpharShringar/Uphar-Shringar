@@ -223,7 +223,42 @@ style="width:100%;padding:10px;margin-bottom:15px;">
 <div id="products" class="products">
   </div>
 
-<div id="cartPanel" style="position:fixed;right:10px;bottom:10px;width:220px;max-width:70%;background:#fff;border:2px solid #e91e63;border-radius:10px;padding:8px;box-shadow:0 0 10px rgba(0,0,0,.2);font-size:14px;z-index:999;">
+<div id="cartPanel"
+style="
+display:none;
+position:fixed;
+right:15px;
+bottom:80px;
+width:220px;
+max-width:70%;
+background:#fff;
+border:2px solid #e91e63;
+border-radius:10px;
+padding:8px;
+box-shadow:0 0 10px rgba(0,0,0,.2);
+font-size:14px;
+z-index:9999;">
+
+  <div id="cartBtn"
+onclick="toggleCart()"
+style="
+position:fixed;
+right:15px;
+bottom:15px;
+width:60px;
+height:60px;
+border-radius:50%;
+background:#e91e63;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+cursor:pointer;
+box-shadow:0 2px 10px rgba(0,0,0,.3);
+z-index:10000;">
+🛒
+  </div>
 
 <h3>🛒 Shopping Cart</h3>
 
@@ -484,6 +519,15 @@ menu.style.width="0";
 menu.style.width="250px";
 }
 
+    }
+    function toggleCart() {
+  const cart = document.getElementById("cartPanel");
+
+  if (cart.style.display === "block") {
+    cart.style.display = "none";
+  } else {
+    cart.style.display = "block";
+  }
     }
 function clearCart() {
   cart = [];
