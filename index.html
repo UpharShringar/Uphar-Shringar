@@ -482,7 +482,7 @@ window.placeOrder = async function () {
       category: category,
       price: Number(price),
       offerPrice: Number(offerPrice || 0),
-      stock: Number(stock),
+      stock: 100,
       image: data.secure_url,
       createdAt: new Date().toISOString(),
       status: "active"
