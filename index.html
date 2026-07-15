@@ -361,6 +361,50 @@ function adminLogin() {
 let cart = [];
 let total = 0;
 
+let qty = {};
+
+function changeQty(name, price, change){
+
+if(!qty[name]) qty[name]=0;
+
+qty[name]+=change;
+
+if(qty[name]<0) qty[name]=0;
+
+document.getElementById("qty_"+name.replace(/\s/g,'')).innerText=qty[name];
+
+cart=[];
+total=0;
+
+for(let item in qty){
+
+if(qty[item]>0){
+
+for(let i=0;i<qty[item];i++){
+
+cart.push({name:item,price:price});
+
+total+=Number(price);
+
+}
+
+}
+
+}
+
+document.getElementById("cartTotal").innerText=total;
+
+document.getElementById("cartItems").innerHTML=
+
+cart.map(item=>"• "+item.name+" - ₹"+item.price).join("<br>");
+
+if(cart.length==0){
+
+document.getElementById("cartItems").innerHTML="No items in cart";
+
+}
+
+}    
 function addToCart(name, price) {
   cart.push({ name, price });
   total += Number(price);
@@ -564,10 +608,17 @@ ${p.offerPrice > 0 ? `
 ${Math.round(((p.price-p.offerPrice)/p.price)*100)}% OFF
 </p>
 ` : ""}
+<div style="display:flex;justify-content:center;align-items:center;gap:8px;margin-top:10px;">
 
-<button onclick="addToCart('${p.name}', ${p.offerPrice || p.price})">
-🛒 Add to Cart
-</button>
+<button onclick="changeQty('${p.name}',${p.offerPrice || p.price},-1)"
+style="width:35px;">➖</button>
+
+<span id="qty_${p.name.replace(/\s/g,'')}">0</span>
+
+<button onclick="changeQty('${p.name}',${p.offerPrice || p.price},1)"
+style="width:35px;">➕</button>
+
+</div>
  
 ${window.isAdmin ? `
 <button
