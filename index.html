@@ -265,6 +265,25 @@ No items in cart
 
 <hr>
   <div id="adminPanel" style="display:none;">
+    <div id="dashboard"
+style="
+background:#fff;
+padding:15px;
+border-radius:10px;
+margin-bottom:15px;
+box-shadow:0 2px 8px rgba(0,0,0,.2);">
+
+<h2>📊 Admin Dashboard</h2>
+
+<p>📦 Products : <b id="totalProducts">0</b></p>
+
+<p>🛒 Orders : <b id="totalOrders">0</b></p>
+
+<p>👥 Customers : <b id="totalCustomers">0</b></p>
+
+<p>💰 Sales : ₹<b id="totalSales">0</b></p>
+
+    </div>
 
 <h2>🛠 Admin Product Upload</h2>
 
@@ -368,6 +387,8 @@ import {
   collection,
   addDoc,
   getDocs,
+  query,
+  where,
   deleteDoc,
   updateDoc,
   doc
@@ -632,7 +653,31 @@ window.deleteProduct = async function(id) {
   }
 
 };
+  async function loadDashboard() {
+
+const products = await getDocs(collection(db, "products"));
+const orders = await getDocs(collection(db, "orders"));
+
+document.getElementById("totalProducts").innerText = products.size;
+document.getElementById("totalOrders").innerText = orders.size;
+
+let customers = new Set();
+let sales = 0;
+
+orders.forEach(doc => {
+const data = doc.data();
+
+customers.add(data.mobile);
+
+sales += Number(data.total || 0);
+});
+
+document.getElementById("totalCustomers").innerText = customers.size;
+document.getElementById("totalSales").innerText = sales;
+
+  }
 loadProducts();
+loadDashboard();
 
 </script>
 
