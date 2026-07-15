@@ -482,6 +482,7 @@ window.placeOrder = async function () {
       category: category,
       price: Number(price),
       offerPrice: Number(offerPrice || 0),
+      stock: Number(stock),
       image: data.secure_url,
       createdAt: new Date().toISOString(),
       status: "active"
@@ -539,6 +540,9 @@ font-weight:bold;">
 <h3>${p.name}</h3>
 
 <p class="price">₹${p.price}</p>
+<p style="color:${p.stock > 0 ? 'green' : 'red'};font-weight:bold;">
+${p.stock > 0 ? '🟢 In Stock (' + p.stock + ')' : '🔴 Out of Stock'}
+</p>
 
 ${p.offerPrice > 0 ? `<p class="offer">Offer ₹${p.offerPrice}</p>` : ""}
 
