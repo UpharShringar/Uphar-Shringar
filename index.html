@@ -552,6 +552,19 @@ margin:5px 0;">
 ` : ""}
 
 <p class="price">₹${p.price}</p>
+${p.offerPrice > 0 ? `
+<p style="text-decoration:line-through;color:gray;">
+₹${p.price}
+</p>
+
+<p style="color:green;font-size:20px;font-weight:bold;">
+₹${p.offerPrice}
+</p>
+
+<p style="background:#ff5722;color:white;padding:4px;border-radius:5px;display:inline-block;">
+${Math.round(((p.price-p.offerPrice)/p.price)*100)}% OFF
+</p>
+` : ""}
 <p style="color:${p.stock > 0 ? 'green' : 'red'};font-weight:bold;">
 ${p.stock > 0 ? '🟢 In Stock (' + p.stock + ')' : '🔴 Out of Stock'}
 </p>
