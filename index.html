@@ -345,6 +345,14 @@ box-shadow:0 2px 8px rgba(0,0,0,.2);">
 <input type="number" id="productPrice" placeholder="Price"><br><br>
 
 <input type="number" id="offerPrice" placeholder="Offer Price"><br><br>
+  <input type="text" id="size1" placeholder="Size 1 (100 ml)"><br><br>
+<input type="number" id="price1" placeholder="Price 1"><br><br>
+
+<input type="text" id="size2" placeholder="Size 2 (200 ml)"><br><br>
+<input type="number" id="price2" placeholder="Price 2"><br><br>
+
+<input type="text" id="size3" placeholder="Size 3 (300 ml)"><br><br>
+<input type="number" id="price3" placeholder="Price 3"><br><br>  
 <select id="productCategory">
   <option value="">📂 All Categories</option>
   <option value="Lipstick">💄 Lipstick</option>
@@ -577,6 +585,14 @@ window.placeOrder = async function () {
   const name = document.getElementById("productName").value;
   const price = document.getElementById("productPrice").value;
   const offerPrice = document.getElementById("offerPrice").value;
+  const size1 = document.getElementById("size1").value;
+const price1 = document.getElementById("price1").value;
+
+const size2 = document.getElementById("size2").value;
+const price2 = document.getElementById("price2").value;
+
+const size3 = document.getElementById("size3").value;
+const price3 = document.getElementById("price3").value;
  const category = document.getElementById("productCategory").value;
   const file = document.getElementById("productImage").files[0];
 
@@ -614,6 +630,11 @@ window.placeOrder = async function () {
       stock: 100,
       image: data.secure_url,
       createdAt: new Date().toISOString(),
+      sizes: [
+  { size: size1, price: Number(price1 || 0) },
+  { size: size2, price: Number(price2 || 0) },
+  { size: size3, price: Number(price3 || 0) }
+],
       status: "active"
     });
 
