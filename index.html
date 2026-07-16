@@ -150,7 +150,11 @@ style="float:right;cursor:pointer;">✖</span>
 </div>
 
 <a href="javascript:void(0)"
-onclick="toggleMenu();document.getElementById('adminPassword').focus();"
+onclick="
+toggleMenu();
+document.getElementById('adminLogin').style.display='block';
+document.getElementById('adminPassword').focus();
+"
 style="display:block;padding:15px;text-decoration:none;color:black;">
 🔐 Admin Login
 </a>
