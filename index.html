@@ -668,6 +668,35 @@ font-weight:bold;">
 
 <img src="${p.image}">
 <h3>${p.name}</h3>
+${p.sizes && p.sizes.length ? `
+<div style="margin:8px 0;">
+${p.sizes.map((s,i)=>`
+<button
+onclick="
+document.getElementById('price_${doc.id}').innerHTML='₹'+${'s.price'};
+document.getElementById('selected_${doc.id}').value='${'s.size'}';
+document.getElementById('selectedPrice_${doc.id}').value='${'s.price'}';
+"
+style="
+margin:2px;
+padding:5px 10px;
+border:1px solid #ccc;
+border-radius:5px;
+background:#fff;
+cursor:pointer;">
+${s.size}
+</button>
+`).join("")}
+</div>
+
+<input type="hidden" id="selected_${doc.id}" value="${p.sizes[0].size}">
+<input type="hidden" id="selectedPrice_${doc.id}" value="${p.sizes[0].price}">
+
+<p id="price_${doc.id}"
+style="color:green;font-size:20px;font-weight:bold;">
+₹${p.sizes[0].price}
+</p>
+` : ""}
 ${p.offerPrice > 0 ? `
 <p style="
 background:#ffeb3b;
