@@ -673,9 +673,9 @@ ${p.sizes && p.sizes.length ? `
 ${p.sizes.map((s,i)=>`
 <button
 onclick="
-document.getElementById('price_${doc.id}').innerHTML='₹'+${'s.price'};
-document.getElementById('selected_${doc.id}').value='${'s.size'}';
-document.getElementById('selectedPrice_${doc.id}').value='${'s.price'}';
+document.getElementById('price_${doc.id}').innerHTML='₹${s.price}';
+document.getElementById('selected_${doc.id}').value='${s.size}';
+document.getElementById('selectedPrice_${doc.id}').value='${s.price}';
 "
 style="
 margin:2px;
