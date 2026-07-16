@@ -722,12 +722,18 @@ ${p.offerPrice > 0 ? `
 <p style="background:#ff5722;color:white;padding:4px;border-radius:5px;display:inline-block;">
 ${Math.round(((p.price-p.offerPrice)/p.price)*100)}% OFF
 </p>
-<button onclick="addToCart('${p.name}', ${p.offerPrice || p.price})"
+<button onclick="addToCart(
+'${p.name} (' + document.getElementById('selected_${doc.id}').value + ')',
+document.getElementById('selectedPrice_${doc.id}').value
+)"
 style="margin-top:10px;width:100%;padding:10px;background:#e91e63;color:white;border:none;border-radius:5px;">
 🛒 Add to Cart
 </button>
 <button
-onclick="buyNow('${p.name}', ${p.offerPrice || p.price})"
+onclick="buyNow(
+'${p.name} (' + document.getElementById('selected_${doc.id}').value + ')',
+document.getElementById('selectedPrice_${doc.id}').value
+)"
 style="margin-top:8px;width:100%;padding:10px;background:#4CAF50;color:white;border:none;border-radius:5px;">
 ⚡ Buy Now
 </button>
