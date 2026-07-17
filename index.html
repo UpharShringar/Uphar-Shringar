@@ -562,8 +562,8 @@ window.placeOrder = async function () {
     window.uploadProduct = async function () {
 
   const name = document.getElementById("productName").value;
-  const price = document.getElementById("productPrice").value;
-  const offerPrice = document.getElementById("offerPrice").value;
+  const size1 = document.getElementById("size1").value;
+const price1 = document.getElementById("price1").value;
  const category = document.getElementById("productCategory").value;
   const file = document.getElementById("productImage").files[0];
 
@@ -613,8 +613,10 @@ offer: Number(document.getElementById("offer3").value || 0)
 },
 ],
       category: category,
-      price: Number(price),
-      offerPrice: Number(offerPrice || 0),
+stock: 100,
+image: data.secure_url,
+createdAt: new Date().toISOString(),
+status: "active"
       stock: 100,
       image: data.secure_url,
       createdAt: new Date().toISOString(),
@@ -624,10 +626,18 @@ offer: Number(document.getElementById("offer3").value || 0)
 
     alert("✅ Product Uploaded Successfully!");
 
-    document.getElementById("productName").value = "";
-    document.getElementById("productPrice").value = "";
-    document.getElementById("offerPrice").value = "";
+    document.getElementById("productName").value "";
+    document.getElementById("price1").value = "";
+    document.getElementById("offer1").value = "";
     document.getElementById("productImage").value = "";
+    document.getElementById("size1").value = "";
+    
+document.getElementById("size2").value = "";
+document.getElementById("price2").value = "";
+document.getElementById("offer2").value = "";
+document.getElementById("size3").value = "";
+document.getElementById("price3").value = "";
+document.getElementById("offer3").value = "";
 
   } catch (e) {
     alert("❌ " + e.message);
