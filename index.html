@@ -561,12 +561,100 @@ window.placeOrder = async function () {
   };
     window.uploadProduct = async function () {
 
-  const name = document.getElementById("productName").value;
-  const size1 = document.getElementById("size1").value;
-const price1 = document.getElementById("price1").value;
- const category = document.getElementById("productCategory").value;
-  const file = document.getElementById("productImage").files[0];
+const name = document.getElementById("productName").value;
 
+const size1 = document.getElementById("size1").value;
+const price1 = document.getElementById("price1").value;
+const offer1 = document.getElementById("offer1").value;
+
+const size2 = document.getElementById("size2").value;
+const price2 = document.getElementById("price2").value;
+const offer2 = document.getElementById("offer2").value;
+
+const size3 = document.getElementById("size3").value;
+const price3 = document.getElementById("price3").value;
+const offer3 = document.getElementById("offer3").value;
+
+const category = document.getElementById("productCategory").value;
+const file = document.getElementById("productImage").files[0];
+
+if (!name || !size1 || !price1 || !file) {
+alert("⚠️ Please fill all details");
+return;
+}
+
+const formData = new FormData();
+formData.append("file", file);
+formData.append("upload_preset", "uphar_upload");
+
+try {
+
+const response = await fetch(
+"https://api.cloudinary.com/v1_1/rms6dpzs/image/upload",
+{
+method: "POST",
+body: formData
+}
+);
+
+const data = await response.json();
+
+if (!data.secure_url) {
+alert("❌ Image Upload Failed");
+return;
+}
+
+await addDoc(collection(db, "products"), {
+
+name: name,
+category: category,
+
+sizes: [
+{
+size: size1,
+price: Number(price1),
+offer: Number(offer1 || price1)
+},
+{
+size: size2,
+price: Number(price2 || 0),
+offer: Number(offer2 || price2 || 0)
+},
+{
+size: size3,
+price: Number(price3 || 0),
+offer: Number(offer3 || price3 || 0)
+}
+],
+
+image: data.secure_url,
+stock: 100,
+createdAt: new Date().toISOString(),
+status: "active"
+
+});
+
+alert("✅ Product Uploaded Successfully!");
+
+document.getElementById("productName").value="";
+document.getElementById("size1").value="";
+document.getElementById("price1").value="";
+document.getElementById("offer1").value="";
+document.getElementById("size2").value="";
+document.getElementById("price2").value="";
+document.getElementById("offer2").value="";
+document.getElementById("size3").value="";
+document.getElementById("price3").value="";
+document.getElementById("offer3").value="";
+document.getElementById("productImage").value="";
+
+loadProducts();
+
+} catch(e){
+alert("❌ " + e.message);
+}
+
+};
 if (!name || !price1 || !file) {
     alert("⚠️ Please fill all details");
     return;
