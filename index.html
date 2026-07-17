@@ -567,10 +567,10 @@ const price1 = document.getElementById("price1").value;
  const category = document.getElementById("productCategory").value;
   const file = document.getElementById("productImage").files[0];
 
-  if (!name || !price || !file) {
+if (!name || !price1 || !file) {
     alert("⚠️ Please fill all details");
     return;
-  }
+}
 
   const formData = new FormData();
   formData.append("file", file);
@@ -588,10 +588,10 @@ const price1 = document.getElementById("price1").value;
 
     const data = await response.json();
 
-    if (!data.secure_url) {
-      alert("❌ Image Upload Failed");
-      return;
-    }
+if (!data.secure_url) {
+    alert("❌ Image Upload Failed");
+    return;
+}
 
     await addDoc(collection(db, "products"), {
       name: name,
