@@ -609,22 +609,25 @@ await addDoc(collection(db, "products"), {
 name: name,
 category: category,
 
-sizes: [
-{
-size: size1,
 price: Number(price1),
-offer: Number(offer1 || price1)
-},
-{
-size: size2,
-price: Number(price2 || 0),
-offer: Number(offer2 || price2 || 0)
-},
-{
-size: size3,
-price: Number(price3 || 0),
-offer: Number(offer3 || price3 || 0)
-}
+offerPrice: Number(offer1 || price1),
+
+sizes: [
+  {
+    size: size1,
+    price: Number(price1),
+    offer: Number(offer1 || price1)
+  },
+  {
+    size: size2,
+    price: Number(price2 || 0),
+    offer: Number(offer2 || price2 || 0)
+  },
+  {
+    size: size3,
+    price: Number(price3 || 0),
+    offer: Number(offer3 || price3 || 0)
+  }
 ],
 
 image: data.secure_url,
