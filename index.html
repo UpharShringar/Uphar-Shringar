@@ -682,10 +682,13 @@ ${p.sizes && p.sizes.length ? `
 ${p.sizes.map((s,i)=>`
 <button
 onclick="
-document.getElementById('selectedOffer_${doc.id}').value='${s.offer}';
 document.getElementById('price_${doc.id}').innerHTML='₹${s.price}';
 document.getElementById('selected_${doc.id}').value='${s.size}';
 document.getElementById('selectedPrice_${doc.id}').value='${s.price}';
+document.getElementById('selectedOffer_${doc.id}').value='${s.offer}';
+document.getElementById('mrp_${doc.id}').innerHTML='₹${s.price}';
+document.getElementById('offer_${doc.id}').innerHTML='₹${s.offer}';
+document.getElementById('off_${doc.id}').innerHTML=Math.round(((${s.price}-${s.offer})/${s.price})*100)+'% OFF';
 "
 style="
 margin:2px;
@@ -720,7 +723,6 @@ margin:5px 0;">
 🎉 Limited Time Offer
 </p>
 ` : ""}
-
 ${p.offerPrice > 0 ? `
 <p style="text-decoration:line-through;color:gray;font-size:16px;">
 ₹${p.price}
@@ -774,6 +776,7 @@ style="margin-top:8px;background:red;color:white;width:100%;padding:10px;border:
 🗑 Delete
 </button>
 ` : ""}
+
 
 </div>
 `;
