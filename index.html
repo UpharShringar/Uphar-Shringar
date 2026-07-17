@@ -654,30 +654,8 @@ loadProducts();
 alert("❌ " + e.message);
 }
 
-};
-      
-
-    alert("✅ Product Uploaded Successfully!");
-
-    document.getElementById("productName").value = "";
-    document.getElementById("price1").value = "";
-    document.getElementById("offer1").value = "";
-    document.getElementById("productImage").value = "";
-    document.getElementById("size1").value = "";  
-    document.getElementById("size2").value = "";
-    document.getElementById("price2").value = "";
-    document.getElementById("offer2").value = "";
-    document.getElementById("size3").value = "";
-    document.getElementById("price3").value = "";
-    document.getElementById("offer3").value = "";
-  
-loadProducts();
-
-} catch (e) {
-    alert("❌ " + e.message);
-}
-
-};
+};      
+    
     window.loadProducts = async function() {
 
   const snap = await getDocs(collection(db, "products"));
