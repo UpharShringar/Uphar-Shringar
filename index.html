@@ -564,23 +564,6 @@ window.placeOrder = async function () {
   const name = document.getElementById("productName").value;
   const price = document.getElementById("productPrice").value;
   const offerPrice = document.getElementById("offerPrice").value;
-  sizes: [
-{
-size: size1,
-price: Number(price1 || 0),
-offer: Number(document.getElementById("offer1").value || 0)
-},
-{
-size: size2,
-price: Number(price2 || 0),
-offer: Number(document.getElementById("offer2").value || 0)
-},
-{
-size: size3,
-price: Number(price3 || 0),
-offer: Number(document.getElementById("offer3").value || 0)
-}
-],
  const category = document.getElementById("productCategory").value;
   const file = document.getElementById("productImage").files[0];
 
@@ -612,6 +595,23 @@ offer: Number(document.getElementById("offer3").value || 0)
 
     await addDoc(collection(db, "products"), {
       name: name,
+      sizes: [
+{
+size: document.getElementById("size1").value,
+price: Number(document.getElementById("price1").value || 0),
+offer: Number(document.getElementById("offer1").value || 0)
+},
+{
+size: document.getElementById("size2").value,
+price: Number(document.getElementById("price2").value || 0),
+offer: Number(document.getElementById("offer2").value || 0)
+},
+{
+size: document.getElementById("size3").value,
+price: Number(document.getElementById("price3").value || 0),
+offer: Number(document.getElementById("offer3").value || 0)
+},
+],
       category: category,
       price: Number(price),
       offerPrice: Number(offerPrice || 0),
