@@ -760,9 +760,19 @@ style="margin-top:8px;width:100%;padding:10px;background:#4CAF50;color:white;bor
 style="width:35px;">➖</button>
 
 <span id="qty_${p.name.replace(/\s/g,'')}">0</span>
+<button onclick="changeQty(
+'${p.name}',
+Number(document.getElementById('selectedPrice_${doc.id}').value),
+-1
+)" style="width:35px;">➖</button>
 
-<button onclick="changeQty('${p.name}',${p.offerPrice || p.price},1)"
-style="width:35px;">➕</button>
+<span id="qty_${p.name.replace(/\s/g,'')}">0</span>
+
+<button onclick="changeQty(
+'${p.name}',
+Number(document.getElementById('selectedPrice_${doc.id}').value),
+1
+)" style="width:35px;">➕</button>
 
 </div>
  
