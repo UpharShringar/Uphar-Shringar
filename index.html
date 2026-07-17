@@ -682,6 +682,7 @@ ${p.sizes && p.sizes.length ? `
 ${p.sizes.map((s,i)=>`
 <button
 onclick="
+document.getElementById('selectedOffer_${doc.id}').value='${s.offer}';
 document.getElementById('price_${doc.id}').innerHTML='₹${s.price}';
 document.getElementById('selected_${doc.id}').value='${s.size}';
 document.getElementById('selectedPrice_${doc.id}').value='${s.price}';
@@ -700,6 +701,7 @@ ${s.size}
 
 <input type="hidden" id="selected_${doc.id}" value="${p.sizes[0].size}">
 <input type="hidden" id="selectedPrice_${doc.id}" value="${p.sizes[0].price}">
+<input type="hidden" id="selectedOffer_${doc.id}" value="${p.sizes[0].offer}">
 
 <p id="price_${doc.id}"
 style="color:green;font-size:20px;font-weight:bold;">
