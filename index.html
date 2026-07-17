@@ -726,30 +726,23 @@ ${s.size}
 <input type="hidden" id="selected_${doc.id}" value="${p.sizes[0].size}">
 <input type="hidden" id="selectedPrice_${doc.id}" value="${p.sizes[0].price}">
 <input type="hidden" id="selectedOffer_${doc.id}" value="${p.sizes[0].offer}">
-
-<p id="price_${doc.id}"
-style="color:green;font-size:20px;font-weight:bold;">
+<p id="price_${doc.id}" style="color:green;font-size:20px;font-weight:bold;">
 ₹${p.sizes[0].price}
 </p>
-` : ""}
-${p.sizes && p.sizes[0].offer > 0 ? `
+
+${p.sizes[0].offer > 0 ? `
 <p id="mrp_${doc.id}" style="text-decoration:line-through;color:gray;font-size:16px;">
 ₹${p.sizes[0].price}
 </p>
 
-<p id="offer_${doc.id}" style="color:green;font-size:20px;font-weight:bold;">
+<p id="offer_${doc.id}" style="color:red;font-size:18px;font-weight:bold;">
 ₹${p.sizes[0].offer}
 </p>
 
 <p id="off_${doc.id}" style="background:#ff5722;color:white;padding:4px;border-radius:5px;display:inline-block;">
-${Math.round(((p.sizes[0].price-p.sizes[0].offer)/p.sizes[0].price)*100)}% OFF
+${Math.round(((p.sizes[0].price - p.sizes[0].offer) / p.sizes[0].price) * 100)}% OFF
 </p>
 ` : ""}
-<button onclick="addToCart(
-'${p.name} (' + document.getElementById('selected_${doc.id}').value + ')',
-document.getElementById('selectedPrice_${doc.id}').value
-)"
-style="margin-top:10px;width:100%;padding:10px;background:#e91e63;color:white;border:none;border-radius:5px;">
 🛒 Add to Cart
 </button>
 <button
