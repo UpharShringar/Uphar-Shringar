@@ -617,16 +617,11 @@ stock: 100,
 image: data.secure_url,
 createdAt: new Date().toISOString(),
 status: "active"
-      stock: 100,
-      image: data.secure_url,
-      createdAt: new Date().toISOString(),
-      
-      status: "active"
     });
 
     alert("✅ Product Uploaded Successfully!");
 
-    document.getElementById("productName").value "";
+    document.getElementById("productName").value = "";
     document.getElementById("price1").value = "";
     document.getElementById("offer1").value = "";
     document.getElementById("productImage").value = "";
