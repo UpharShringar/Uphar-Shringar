@@ -768,13 +768,13 @@ Number(document.getElementById('selectedPrice_${doc.id}').value),
 
 <span id="qty_${p.name.replace(/\s/g,'')}">0</span>
 
-<button onclick="changeQty(
-'${p.name}',
-Number(document.getElementById('selectedPrice_${doc.id}').value),
-1
-)" style="width:35px;">➕</button>
+<button onclick="changeQty('${p.name}',${p.offerPrice || p.price},-1)"
+style="width:35px;">➖</button>
 
-</div>
+<span id="qty_${p.name.replace(/\s/g,'')}">0</span>
+
+<button onclick="changeQty('${p.name}',${p.offerPrice || p.price},1)"
+style="width:35px;">➕</button>
  
 ${window.isAdmin ? `
 <button
