@@ -655,45 +655,7 @@ alert("❌ " + e.message);
 }
 
 };
-      "https://api.cloudinary.com/v1_1/rms6dpzs/image/upload",
-      {
-        method: "POST",
-        body: formData
-      }
-    );
-
-    const data = await response.json();
-
-if (!data.secure_url) {
-    alert("❌ Image Upload Failed");
-    return;
-}
-
-    await addDoc(collection(db, "products"), {
-      name: name,
-      sizes: [
-{
-size: document.getElementById("size1").value,
-price: Number(document.getElementById("price1").value || 0),
-offer: Number(document.getElementById("offer1").value || 0)
-},
-{
-size: document.getElementById("size2").value,
-price: Number(document.getElementById("price2").value || 0),
-offer: Number(document.getElementById("offer2").value || 0)
-},
-{
-size: document.getElementById("size3").value,
-price: Number(document.getElementById("price3").value || 0),
-offer: Number(document.getElementById("offer3").value || 0)
-},
-],
-      category: category,
-stock: 100,
-image: data.secure_url,
-createdAt: new Date().toISOString(),
-status: "active"
-    });
+      
 
     alert("✅ Product Uploaded Successfully!");
 
