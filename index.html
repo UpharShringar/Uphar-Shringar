@@ -710,17 +710,10 @@ document.getElementById('mrp_${doc.id}').innerHTML='₹${s.price}';
 document.getElementById('offer_${doc.id}').innerHTML='₹${s.offer}';
 document.getElementById('off_${doc.id}').innerHTML=Math.round(((${s.price}-${s.offer})/${s.price})*100)+'% OFF';
 "
-style="
-margin:2px;
-padding:5px 10px;
-border:1px solid #ccc;
-border-radius:5px;
-background:#fff;
-cursor:pointer;"
-Size: ${s.size}
+style="margin:2px;padding:5px 10px;border:1px solid #ccc;border-radius:5px;background:#fff;cursor:pointer;">
+${s.size}
 </button>
 `).join("")}
-</div>
 
 <input type="hidden" id="selected_${doc.id}" value="${p.sizes[0].size}">
 <input type="hidden" id="selectedPrice_${doc.id}" value="${p.sizes[0].price}">
