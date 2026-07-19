@@ -694,7 +694,6 @@ font-weight:bold;">
 🔥 SALE
 </div>
 ` : ""}
-
 <img src="${p.image}">
 <h3>${p.name}</h3>
 ${p.sizes && p.sizes.filter(s => s && s.size && s.size.trim()).length ? `
@@ -754,7 +753,7 @@ ${Math.round(((p.sizes[0].price-p.sizes[0].offer)/p.sizes[0].price)*100)}% OFF
 '${p.name} (' + document.getElementById('selected_${doc.id}').value + ')',
 Number(document.getElementById('selectedOffer_${doc.id}').value) || Number(document.getElementById('selectedPrice_${doc.id}').value)
 )"
-style="margin-top:10px;width:100%;padding:10px;background:#e91e63;color:white;border:none;border-radius:5px;">
+style="margin-top:10px;width:100%;padding:10px;background:#e91e63;color:white;
 🛒 Add to Cart
 </button>
 <button
