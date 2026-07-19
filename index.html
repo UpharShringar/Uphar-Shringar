@@ -717,13 +717,16 @@ border:1px solid #ccc;
 border-radius:5px;
 background:#fff;
 cursor:pointer;">
-${s.size}
+${s.size || ""}
 </button>
 `).join("")}
 </div>
 <input type="hidden" id="selected_${doc.id}" value="${p.sizes[0].size}">
 <input type="hidden" id="selectedPrice_${doc.id}" value="${p.sizes[0].price}">
 <input type="hidden" id="selectedOffer_${doc.id}" value="${p.sizes[0].offer}">
+<p id="price_${doc.id}" style="color:green;font-size:20px;font-weight:bold;">
+₹${p.sizes[0].price}
+</p>
 
 ${p.sizes[0].offer > 0 ? `
 <p id="mrp_${doc.id}" style="text-decoration:line-through;color:gray;font-size:16px;">
