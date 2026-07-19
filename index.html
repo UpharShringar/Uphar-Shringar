@@ -697,12 +697,13 @@ font-weight:bold;">
 
 <img src="${p.image}">
 <h3>${p.name}</h3>
-${p.sizes && p.sizes.length ? `
+${p.sizes && p.sizes.filter(s => s && s.size && s.size.trim()).length ? `
+
 <div style="margin:8px 0;display:flex;gap:5px;flex-wrap:wrap;justify-content:center;">
 
 ${p.sizes
 .filter(s => s && s.size && s.size.trim())
-.map((s,i)=>`
+.map(s => `
 
 <button
 onclick="
@@ -710,29 +711,23 @@ document.getElementById('selected_${doc.id}').value='${s.size}';
 document.getElementById('selectedPrice_${doc.id}').value='${s.price}';
 document.getElementById('selectedOffer_${doc.id}').value='${s.offer}';
 
-document.getElementById('price_${doc.id}').innerHTML='₹${s.offer || s.price}';
-
-if(document.getElementById('mrp_${doc.id}')){
+document.getElementById('price_${doc.id}').innerHTML='₹${s.price}';
 document.getElementById('mrp_${doc.id}').innerHTML='₹${s.price}';
-}
-
-if(document.getElementById('offer_${doc.id}')){
 document.getElementById('offer_${doc.id}').innerHTML='₹${s.offer}';
-}
-
-if(document.getElementById('off_${doc.id}')){
 document.getElementById('off_${doc.id}').innerHTML=
 Math.round(((${s.price}-${s.offer})/${s.price})*100)+'% OFF';
-}
 "
+style="
 margin:2px;
-padding:5px 10px;
+padding:6px 12px;
 border:1px solid #ccc;
 border-radius:5px;
 background:#fff;
-cursor:pointer;">
+cursor:pointer;
+">
 ${s.size}
 </button>
+
 `).join("")}
 
 </div>
@@ -740,12 +735,11 @@ ${s.size}
 <input type="hidden" id="selected_${doc.id}" value="${p.sizes[0].size}">
 <input type="hidden" id="selectedPrice_${doc.id}" value="${p.sizes[0].price}">
 <input type="hidden" id="selectedOffer_${doc.id}" value="${p.sizes[0].offer}">
-
 <p id="price_${doc.id}" style="color:green;font-size:20px;font-weight:bold;">
 ₹${p.sizes[0].price}
 </p>
 
-<p id="mrp_${doc.id}" style="text-decoration:line-through;color:gray;">
+<p id="mrp_${doc.id}" style="text-decoration:line-through;color:gray;font-size:16px;">
 ₹${p.sizes[0].price}
 </p>
 
@@ -753,7 +747,7 @@ ${s.size}
 ₹${p.sizes[0].offer}
 </p>
 
-<p id="off_${doc.id}" style="background:#ff5722;color:#fff;padding:4px;border-radius:5px;display:inline-block;">
+<p id="off_${doc.id}" style="background:#ff5722;color:white;padding:4px;border-radius:5px;display:inline-block;">
 ${Math.round(((p.sizes[0].price-p.sizes[0].offer)/p.sizes[0].price)*100)}% OFF
 </p>
 
