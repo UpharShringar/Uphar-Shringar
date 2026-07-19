@@ -747,13 +747,11 @@ ${s.size}
 <p id="off_${doc.id}" style="background:#ff5722;color:white;padding:4px;border-radius:5px;display:inline-block;">
 ${Math.round(((p.sizes[0].price-p.sizes[0].offer)/p.sizes[0].price)*100)}% OFF
 </p>
-
-` : ""}
 <button onclick="addToCart(
 '${p.name} (' + document.getElementById('selected_${doc.id}').value + ')',
 Number(document.getElementById('selectedOffer_${doc.id}').value) || Number(document.getElementById('selectedPrice_${doc.id}').value)
 )"
-style="margin-top:10px;width:100%;padding:10px;background:#e91e63;color:white;
+style="margin-top:10px;width:100%;padding:10px;background:#e91e63
 🛒 Add to Cart
 </button>
 <button
