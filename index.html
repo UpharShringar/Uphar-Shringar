@@ -699,8 +699,6 @@ font-weight:bold;">
 <h3>${p.name}</h3>
 ${p.sizes && p.sizes.length ? `
 <div style="margin:8px 0;">
-${p.sizes && p.sizes.length ? `
-<div style="margin:8px 0;">
 ${p.sizes.map((s,i)=>`
 <button
 onclick="
@@ -708,16 +706,21 @@ document.getElementById('price_${doc.id}').innerHTML='₹${s.price}';
 document.getElementById('selected_${doc.id}').value='${s.size}';
 document.getElementById('selectedPrice_${doc.id}').value='${s.price}';
 document.getElementById('selectedOffer_${doc.id}').value='${s.offer}';
-document.getElementById('mrp_${doc.id}').innerHTML='₹'+${s.price};
-document.getElementById('offer_${doc.id}').innerHTML='₹'+${s.offer};
+document.getElementById('mrp_${doc.id}').innerHTML='₹${s.price}';
+document.getElementById('offer_${doc.id}').innerHTML='₹${s.offer}';
 document.getElementById('off_${doc.id}').innerHTML=Math.round(((${s.price}-${s.offer})/${s.price})*100)+'% OFF';
 "
-style="margin:2px;padding:5px 10px;border:1px solid #ccc;border-radius:5px;background:#fff;cursor:pointer;">
+style="
+margin:2px;
+padding:5px 10px;
+border:1px solid #ccc;
+border-radius:5px;
+background:#fff;
+cursor:pointer;">
 ${s.size}
 </button>
 `).join("")}
 </div>
-` : ""}
 <input type="hidden" id="selected_${doc.id}" value="${p.sizes[0].size}">
 <input type="hidden" id="selectedPrice_${doc.id}" value="${p.sizes[0].price}">
 <input type="hidden" id="selectedOffer_${doc.id}" value="${p.sizes[0].offer}">
