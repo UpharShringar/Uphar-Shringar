@@ -700,7 +700,6 @@ font-weight:bold;">
 ${p.sizes && p.sizes.length ? `
 <div style="margin:8px 0;">
 ${p.sizes.map((s,i)=>`
-console.log(s);
 <button
 onclick="
 document.getElementById('price_${doc.id}').innerHTML='₹${s.price}';
