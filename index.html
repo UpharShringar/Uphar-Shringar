@@ -699,7 +699,7 @@ font-weight:bold;">
 <h3>${p.name}</h3>
 ${p.sizes && p.sizes.length ? `
 <div style="margin:8px 0;">
-${p.sizes.map((s,i)=>`
+${p.sizes.filter(s => s.size && s.size.trim() !== "").map((s,i)=>`
 <button
 onclick="
 document.getElementById('price_${doc.id}').innerHTML='₹${s.price}';
