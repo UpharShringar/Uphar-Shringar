@@ -651,7 +651,7 @@ alert("❌ " + e.message);
   const products = document.getElementById("products");
   const selectedCategory = document.getElementById("filterCategory")? document.getElementById("filterCategory").value : "";
   const searchText = document.getElementById("searchBox")? document.getElementById("searchBox").value.toLowerCase() : "";
-  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  const isAdmin = true;
   products.innerHTML = "";
 
   snap.forEach(doc => {
