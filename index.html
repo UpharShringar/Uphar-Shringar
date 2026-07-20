@@ -611,23 +611,11 @@ category: category,
 price: Number(price1),
 offerPrice: Number(offer1 || price1),
 
-sizes: [
-  {
-    size: size1,
-    price: Number(price1),
-    offer: Number(offer1 || price1)
-  },
-  {
-    size: size2,
-    price: Number(price2 || 0),
-    offer: Number(offer2 || price2 || 0)
-  },
-  {
-    size: size3,
-    price: Number(price3 || 0),
-    offer: Number(offer3 || price3 || 0)
-  }
-],
+sizes: [size1, size2, size3].map((s, i) => {
+  const p = [price1, price2, price3][i];
+  const o = [offer1, offer2, offer3][i];
+  return s && s.trim()? { size: s.trim(), price: Number(p || 0), offer: Number(o || p || 0) } : null;
+}).filter(Boolean),
 
 image: data.secure_url,
 stock: 100,
