@@ -651,6 +651,7 @@ alert("❌ " + e.message);
   const selectedCategory = document.getElementById("filterCategory")? document.getElementById("filterCategory").value : "";
   const searchText = document.getElementById("searchBox")? document.getElementById("searchBox").value.toLowerCase() : "";
   products.innerHTML = "";
+  const isAdmin = document.getElementById("adminSection")? document.getElementById("adminSection").style.display !== "none" : false;
 
   snap.forEach(doc => {
     const p = doc.data();
@@ -659,7 +660,10 @@ alert("❌ " + e.message);
 
     products.innerHTML += `
     <div class="card" style="background:#fff; border-radius:12px; padding:12px; text-align:center; position:relative; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
-    <div style="position:absolute; top:10px; right:10px; display:flex; gap:6px;">
+    ${isAdmin ? `<div style="position:absolute; top:10px; right:10px; display:flex; gap:6px;">
+  <button onclick="editProduct('${doc.id}')" style="background:#2196F3;color:white;border:none;padding:5px 8px;border-radius:5px;">✏️</button>
+  <button onclick="deleteProduct('${doc.id}')" style="background:#f44336;color:white;border:none;padding:5px 8px;border-radius:5px;">🗑️</button>
+</div>` : ""}
   <button onclick="editProduct('${doc.id}')" style="background:#2196F3;color:white;border:none;padding:5px 8px;border-radius:5px;">✏️</button>
   <button onclick="deleteProduct('${doc.id}')" style="background:#f44336;color:white;border:none;padding:5px 8px;border-radius:5px;">🗑️</button>
 </div>
