@@ -652,8 +652,6 @@ alert("❌ " + e.message);
 
   snap.forEach(doc => {
     const p = doc.data();
-      if(selectedCategory && selectedCategory !== "" && p.category !== selectedCategory) return;
-  if(searchText && !p.name.toLowerCase().includes(searchText)) return;
     const validSizes = p.sizes? p.sizes.filter(s => s && s.size && String(s.size).trim()!== "") : [];
     const first = validSizes.length > 0? validSizes[0] : {size: "", price: p.price, offer: p.offerPrice || p.price};
 
