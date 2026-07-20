@@ -646,6 +646,8 @@ alert("❌ " + e.message);
 
 };      
    window.loadProducts = async function() {
+  const snap = await getDocs(collection(db, "products"));
+  const products = document.getElementById("products");
   const selectedCategory = document.getElementById("filterCategory")? document.getElementById("filterCategory").value : "";
   const searchText = document.getElementById("searchBox")? document.getElementById("searchBox").value.toLowerCase() : "";
   products.innerHTML = "";
