@@ -645,13 +645,14 @@ alert("❌ " + e.message);
 }
 
 };      
-   window.loadProducts = async function() {
+   window.loadProducts = async function(selectedCategory) {
   const snap = await getDocs(collection(db, "products"));
   const products = document.getElementById("products");
   products.innerHTML = "";
 
   snap.forEach(doc => {
     const p = doc.data();
+      if(selectedCategory && selectedCategory !== "All" && p.category !== selectedCategory) return;
     const validSizes = p.sizes? p.sizes.filter(s => s && s.size && String(s.size).trim()!== "") : [];
     const first = validSizes.length > 0? validSizes[0] : {size: "", price: p.price, offer: p.offerPrice || p.price};
 
