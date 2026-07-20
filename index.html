@@ -646,57 +646,45 @@ alert("❌ " + e.message);
 
 };      
     
-    window.loadProducts = async function() {
+window.loadProducts = async function() {
   const snap = await getDocs(collection(db, "products"));
   const products = document.getElementById("products");
   products.innerHTML = "";
-  const isAdmin = window.isAdmin || false;
 
   snap.forEach(doc => {
     const p = doc.data();
-    const search = document.getElementById("searchBox").value.toLowerCase();
-    const category = document.getElementById("filterCategory").value;
-    if ((search &&!p.name.toLowerCase().includes(search)) || (category && p.category!== category)) return;
-
-    const hasSizes = p.sizes && p.sizes.filter(s => s && s.size && s.size.trim()).length > 0;
-    const first = hasSizes? p.sizes.filter(s=>s.size.trim())[0] : null;
+    // khali size ko filter karo - yahi main fix hai
+    const validSizes = p.sizes? p.sizes.filter(s => s && s.size && s.size.trim()!== "") : [];
+    const first = validSizes.length > 0? validSizes[0] : null;
 
     products.innerHTML += `
-    <div class="card">
-      ${p.offerPrice > 0 || (first && first.offer)? `<div style="position:absolute;top:10px;left:10px;background:red;color:white;padding:5px 10px;border-radius:5px;font-size:12px;font-weight:bold;">🔥 SALE</div>` : ""}
-      <img src="${p.image}"><h3>${p.name}</h3>
+    <div class="card" style="position:relative;">
+      ${first && first.offer? `<div style="position:absolute;top:10px;left:10px;background:red;color:white;padding:5px 10px;border-radius:5px;font-size:12px;">🔥 SALE</div>` : ""}
+      <img src="${p.image}" style="width:100%;border-radius:10px;">
+      <h3 style="text-align:center;">${p.name}</h3>
 
-      ${hasSizes? `
-        <div style="margin:8px 0;display:flex;gap:5px;flex-wrap:wrap;justify-content:center;">
-          ${p.sizes.filter(s=>s.size.trim()).map(s=>`
+      ${validSizes.length > 0? `
+        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:8px 0;">
+          ${validSizes.map(s => `
             <button onclick="
               document.getElementById('selected_${doc.id}').value='${s.size}';
-              document.getElementById('selectedPrice_${doc.id}').value='${s.price}';
               document.getElementById('selectedOffer_${doc.id}').value='${s.offer}';
               document.getElementById('mrp_${doc.id}').innerHTML='₹${s.price}';
               document.getElementById('offer_${doc.id}').innerHTML='₹${s.offer}';
               document.getElementById('mlBox_${doc.id}').innerHTML='${s.size}';
-              document.getElementById('off_${doc.id}').innerHTML=Math.round(((${s.price}-${s.offer})/${s.price})*100)+'% OFF';
-            " style="margin:2px;padding:6px 12px;border:1px solid #e91e63;border-radius:20px;background:#fff;cursor:pointer;">${s.size}</button>
+            " style="padding:6px 14px;border:1px solid #e91e63;border-radius:20px;background:#fff;cursor:pointer;">${s.size}</button>
           `).join("")}
         </div>
-        <div id="mlBox_${doc.id}" style="margin:6px auto;border:1px solid #ddd;padding:4px 10px;border-radius:5px;font-weight:bold;display:inline-block;">${first.size}</div>
+        <div style="text-align:center;">
+          <div id="mlBox_${doc.id}" style="display:inline-block;border:1px solid #ccc;padding:4px 12px;border-radius:6px;font-weight:bold;margin:5px 0;">${first.size}</div>
+          <p id="mrp_${doc.id}" style="text-decoration:line-through;color:gray;margin:2px;">₹${first.price}</p>
+          <p id="offer_${doc.id}" style="color:red;font-size:20px;font-weight:bold;margin:2px;">₹${first.offer}</p>
+        </div>
         <input type="hidden" id="selected_${doc.id}" value="${first.size}">
-        <input type="hidden" id="selectedPrice_${doc.id}" value="${first.price}">
         <input type="hidden" id="selectedOffer_${doc.id}" value="${first.offer}">
-        <p id="mrp_${doc.id}" style="text-decoration:line-through;color:gray;">₹${first.price}</p>
-        <p id="offer_${doc.id}" style="color:red;font-size:18px;font-weight:bold;">₹${first.offer}</p>
-        <p id="off_${doc.id}" style="background:#ff5722;color:white;padding:4px;border-radius:5px;display:inline-block;">${Math.round(((first.price-first.offer)/first.price)*100)}% OFF</p>
-      ` : `
-        <p style="text-decoration:line-through;color:gray;">₹${p.price}</p>
-        <p style="color:red;font-size:18px;font-weight:bold;">₹${p.offerPrice || p.price}</p>
-        <input type="hidden" id="selected_${doc.id}" value="">
-        <input type="hidden" id="selectedPrice_${doc.id}" value="${p.price}">
-        <input type="hidden" id="selectedOffer_${doc.id}" value="${p.offerPrice || p.price}">
-      `}
+      ` : `<p>Price: ₹${p.price}</p>`}
 
-      <button onclick="addToCart('${p.name} (' + document.getElementById('selected_${doc.id}').value + ')', Number(document.getElementById('selectedOffer_${doc.id}').value))" style="margin-top:10px;width:100%;padding:10px;background:#e91e63;color:white;border:none;border-radius:5px;">🛒 Add to Cart</button>
-      <button onclick="buyNow('${p.name} (' + document.getElementById('selected_${doc.id}').value + ')', document.getElementById('selectedPrice_${doc.id}').value)" style="margin-top:8px;width:100%;padding:10px;background:#4CAF50;color:white;border:none;border-radius:5px;">⚡ Buy Now</button>
+      <button onclick="addToCart('${p.name} (' + document.getElementById('selected_${doc.id}').value + ')', Number(document.getElementById('selectedOffer_${doc.id}').value))" style="width:100%;padding:10px;background:#e91e63;color:white;border:none;border-radius:5px;margin-top:8px;">🛒 Add to Cart</button>
     </div>`;
   });
 }
