@@ -645,49 +645,43 @@ alert("❌ " + e.message);
 }
 
 };      
-    
-window.loadProducts = async function() {
+   window.loadProducts = async function() {
   const snap = await getDocs(collection(db, "products"));
   const products = document.getElementById("products");
   products.innerHTML = "";
 
   snap.forEach(doc => {
     const p = doc.data();
-    // khali size ko filter karo - yahi main fix hai
-    const validSizes = p.sizes? p.sizes.filter(s => s && s.size && s.size.trim()!== "") : [];
-    const first = validSizes.length > 0? validSizes[0] : null;
+    const validSizes = p.sizes? p.sizes.filter(s => s && s.size && String(s.size).trim()!== "") : [];
+    const first = validSizes.length > 0? validSizes[0] : {size: "", price: p.price, offer: p.offerPrice || p.price};
 
     products.innerHTML += `
-    <div class="card" style="position:relative;">
-      ${first && first.offer? `<div style="position:absolute;top:10px;left:10px;background:red;color:white;padding:5px 10px;border-radius:5px;font-size:12px;">🔥 SALE</div>` : ""}
-      <img src="${p.image}" style="width:100%;border-radius:10px;">
-      <h3 style="text-align:center;">${p.name}</h3>
+    <div class="card" style="background:#fff; border-radius:12px; padding:12px; text-align:center; position:relative; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+      ${first.offer < first.price? `<div style="position:absolute;top:10px;left:10px;background:red;color:white;padding:4px 8px;border-radius:5px;font-size:11px;">🔥 SALE</div>` : ""}
+      <img src="${p.image}" style="width:100%; height:220px; object-fit:contain;">
+      <h3 style="margin:10px 0; font-size:16px;">${p.name}</h3>
 
-      ${validSizes.length > 0? `
-        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:8px 0;">
-          ${validSizes.map(s => `
-            <button onclick="
-              document.getElementById('selected_${doc.id}').value='${s.size}';
-              document.getElementById('selectedOffer_${doc.id}').value='${s.offer}';
-              document.getElementById('mrp_${doc.id}').innerHTML='₹${s.price}';
-              document.getElementById('offer_${doc.id}').innerHTML='₹${s.offer}';
-              document.getElementById('mlBox_${doc.id}').innerHTML='${s.size}';
-            style="padding:6px 14px;border:1px solid #e91e63;border-radius:20px;background:#fff;cursor:pointer;"
-        </div>
-        <div style="text-align:center;">
-          <div id="mlBox_${doc.id}" style="display:inline-block;border:1px solid #ccc;padding:4px 12px;border-radius:6px;font-weight:bold;margin:5px 0;">${first.size}</div>
-          <p id="mrp_${doc.id}" style="text-decoration:line-through;color:gray;margin:2px;">₹${first.price}</p>
-          <p id="offer_${doc.id}" style="color:red;font-size:20px;font-weight:bold;margin:2px;">₹${first.offer}</p>
-        </div>
-        <input type="hidden" id="selected_${doc.id}" value="${first.size}">
-        <input type="hidden" id="selectedOffer_${doc.id}" value="${first.offer}">
-      ` : `<p>Price: ₹${p.price}</p>`}
+      <div style="display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:8px 0;">
+        ${validSizes.map(s => `
+          <button onclick="
+            document.getElementById('selected_${doc.id}').value='${s.size}';
+            document.getElementById('selectedOffer_${doc.id}').value='${s.offer}';
+            document.getElementById('mrp_${doc.id}').innerHTML='₹${s.price}';
+            document.getElementById('offer_${doc.id}').innerHTML='₹${s.offer}';
+          " style="padding:5px 12px; border:1px solid #e91e63; border-radius:20px; background:#fff; color:#000; font-weight:500; cursor:pointer;">${s.size}</button>
+        `).join("")}
+      </div>
 
-      <button onclick="addToCart('${p.name} (' + document.getElementById('selected_${doc.id}').value + ')', Number(document.getElementById('selectedOffer_${doc.id}').value))" style="width:100%;padding:10px;background:#e91e63;color:white;border:none;border-radius:5px;margin-top:8px;">🛒 Add to Cart</button>
+      <p id="mrp_${doc.id}" style="text-decoration:line-through; color:gray; margin:4px 0; font-size:13px;">₹${first.price}</p>
+      <p id="offer_${doc.id}" style="color:#e91e63; font-size:18px; font-weight:bold; margin:4px 0;">₹${first.offer}</p>
+
+      <input type="hidden" id="selected_${doc.id}" value="${first.size}">
+      <input type="hidden" id="selectedOffer_${doc.id}" value="${first.offer}">
+
+      <button onclick="addToCart('${p.name} (' + document.getElementById('selected_${doc.id}').value + ')', Number(document.getElementById('selectedOffer_${doc.id}').value))" style="width:100%; padding:10px; background:#e91e63; color:white; border:none; border-radius:8px; margin-top:8px; font-weight:bold;">🛒 Add to Cart</button>
     </div>`;
   });
-}
-
+} 
   
 window.editProduct = async function(id, oldName, oldPrice, oldOffer, oldImage) {
 
