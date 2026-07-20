@@ -678,7 +678,9 @@ alert("❌ " + e.message);
       <input type="hidden" id="selected_${doc.id}" value="${first.size}">
       <input type="hidden" id="selectedOffer_${doc.id}" value="${first.offer}">
 
-      <button onclick="addToCart('${p.name} (' + document.getElementById('selected_${doc.id}').value + ')', Number(document.getElementById('selectedOffer_${doc.id}').value))" style="width:100%; padding:10px; background:#e91e63; color:white; border:none; border-radius:8px; margin-top:8px; font-weight:bold;">🛒 Add to Cart</button>
+      
+    <button onclick="addToCart('${p.name} (' + document.getElementById('selected_${doc.id}').value + ')', Number(document.getElementById('selectedOffer_${doc.id}').value))" style="width:100%; padding:10px; background:#e91e63; color:white; border:none; border-radius:8px; margin-top:8px; font-weight:bold;">🛒 Add to Cart</button>
+    <button onclick="buyNow('${p.name} (' + document.getElementById('selected_${doc.id}').value + ')', document.getElementById('selectedOffer_${doc.id}').value)" style="width:100%; padding:10px; background:#4CAF50; color:white; border:none; border-radius:8px; margin-top:8px; font-weight:bold;">⚡ Buy Now</button>
     </div>`;
   });
 } 
