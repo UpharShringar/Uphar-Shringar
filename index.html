@@ -231,7 +231,7 @@ placeholder="🔍 Search Product..."
 onkeyup="loadProducts()"
 style="width:100%;padding:10px;margin-bottom:15px;">
 <div id="products" class="products">
-  </div>
+</div>
 
 <div id="cartPanel"
 style="
@@ -649,14 +649,14 @@ alert("❌ " + e.message);
   const snap = await getDocs(collection(db, "products"));
   const products = document.getElementById("products");
   const selectedCategory = document.getElementById("filterCategory")? document.getElementById("filterCategory").value : "";
-  const searchText = document.getElementById("searchBox")? document.getElementById("searchBox").value.toLowerCase() : "";
+  const searchText = document.getElementById("searchBox")?.value.toLowerCase() || "";
   const isAdmin = window.isAdmin === true;
   products.innerHTML = "";
 
   snap.forEach(doc => {
     const p = doc.data();
     if(selectedCategory && selectedCategory.trim()!== "" && (p.category || "").trim()!== selectedCategory.trim()) return;
-    if(searchText &&!p.name.toLowerCase().includes(searchText)) return;
+    if(searchText && !p.name.toLowerCase().includes(searchText)) return;
 
     const validSizes = p.sizes? p.sizes.filter(s => s && s.size && String(s.size).trim()!== "") : [];
     const first = validSizes.length > 0? validSizes[0] : {size: "", price: p.price, offer: p.offerPrice || p.price};
