@@ -399,73 +399,60 @@ function adminLogin() {
 
 let cart = [];
 let total = 0;
-
 let qty = {};
+let prices = {};
 
 function changeQty(name, price, change){
+  if(!qty[name]) qty[name]=0;
+  qty[name]+=change;
+  if(qty[name]<0) qty[name]=0;
 
-if(!qty[name]) qty[name]=0;
+  prices[name] = price;
 
-qty[name]+=change;
+  document.getElementById("qty_"+name.replace(/\s/g,'')).innerText=qty[name];
 
-if(qty[name]<0) qty[name]=0;
+  cart=[];
+  total=0;
 
-document.getElementById("qty_"+name.replace(/\s/g,'')).innerText=qty[name];
+  for(let item in qty){
+    if(qty[item]>0){
+      for(let i=0;i<qty[item];i++){
+        cart.push({name:item, price:prices[item]});
+        total+=Number(prices[item]);
+      }
+    }
+  }
 
-cart=[];
-total=0;
+  document.getElementById("cartTotal").innerText=total;
+  document.getElementById("cartItems").innerHTML=
+  cart.map(item=>"• "+item.name+" - ₹"+item.price).join("<br>");
 
-for(let item in qty){
-
-if(qty[item]>0){
-
-for(let i=0;i<qty[item];i++){
-
-cart.push({name:item,price:price});
-
-total+=Number(price);
-
+  if(cart.length==0){
+    document.getElementById("cartItems").innerHTML="No items in cart";
+  }
 }
 
-}
-
-}
-
-document.getElementById("cartTotal").innerText=total;
-
-document.getElementById("cartItems").innerHTML=
-
-cart.map(item=>"• "+item.name+" - ₹"+item.price).join("<br>");
-
-if(cart.length==0){
-
-document.getElementById("cartItems").innerHTML="No items in cart";
-
-}
-
-}    
-function addToCart(name, price, qty) {
-  qty = qty || 1;
-  let finalPrice = Number(price) * qty;
-  cart.push({ name: name + ' x' + qty, price: finalPrice });
+function addToCart(name, price, q) {
+  q = q || qty[name] || 1;
+  let finalPrice = Number(price) * q;
+  cart.push({ name: name + ' x' + q, price: finalPrice });
   total += finalPrice;
 
   document.getElementById("cartTotal").innerText = total;
-
   document.getElementById("cartItems").innerHTML =
     cart.map(item => "• " + item.name + " - ₹" + item.price).join("<br>");
 }
+
 function buyNow(name, price){
-
-cart = [];
-total = 0;
-
-addToCart(name, price);
-
-document.getElementById("fullname").scrollIntoView({
-behavior:"smooth"
-});
-
+  let q = qty[name] || 1;
+  if(q==0) q=1;
+  cart = [];
+  total = 0;
+  addToCart(name, price, q);
+  document.getElementById("fullname").scrollIntoView({
+    behavior:"smooth"
+  });
+}
     }
     function toggleMenu(){
 
