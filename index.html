@@ -474,14 +474,13 @@ menu.style.width="250px";
 
     }
     function toggleCart() {
-const cartPanel = document.getElementById("cartPanel"); //
-
-  if (cart.style.display === "block") {
-    cart.style.display = "none";
+  const cartPanel = document.getElementById("cartPanel");
+  if (cartPanel.style.display === "block") {
+    cartPanel.style.display = "none";
   } else {
-    cart.style.display = "block";
+    cartPanel.style.display = "block";
   }
-    }
+}
 function clearCart() {
   cart = [];
   total = 0;
