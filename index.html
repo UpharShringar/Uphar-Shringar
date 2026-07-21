@@ -431,7 +431,6 @@ function changeQty(name, price, change){
     document.getElementById("cartItems").innerHTML="No items in cart";
   }
 }
-
 function addToCart(name, price, q) {
   q = q || qty[name] || 1;
   let finalPrice = Number(price) * q;
@@ -462,6 +461,7 @@ function buyNow(name, price){
     behavior:"smooth"
   });
 }
+
     function toggleMenu(){
 
 const menu=document.getElementById("sideMenu");
