@@ -1,0 +1,15 @@
+{
+  "name": "Uphar Shringar & Gifts",
+  "short_name": "Uphar Shringar",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#581845",
+  "theme_color": "#581845",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3081/3081559.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
