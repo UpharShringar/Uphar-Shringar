@@ -444,8 +444,17 @@ function addToCart(name, price, q) {
 }
 
 function buyNow(name, price){
-  let q = qty[name] || 1;
+  // id se direct qty padh lete hain, 100% sahi ayega
+  let qtyId = "qty_" + name.replace(/\s/g,'');
+  let q = 1;
+  let el = document.getElementById(qtyId);
+  if(el){
+    q = Number(el.innerText) || qty[name] || 1;
+  } else {
+    q = qty[name] || 1;
+  }
   if(q==0) q=1;
+
   cart = [];
   total = 0;
   addToCart(name, price, q);
