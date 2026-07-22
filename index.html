@@ -727,6 +727,40 @@ loadProducts();
 loadDashboard();
 
 </script>
+<script>
+function toggleCart(){
+  var d = document.getElementById('cartDrawer');
+  var o = document.getElementById('cartOverlay');
+  if(d.style.display=='none' || d.style.display==''){
+    d.style.display='block'; o.style.display='block';
+  } else {
+    d.style.display='none'; o.style.display='none';
+    document.getElementById('orderFormDiv').style.display='none';
+  }
+}
 
+function showOrderForm(){
+  var items = document.getElementById('cartItems').innerHTML;
+  if(items.includes('No items')){
+    alert('Pehle Product Add karo!');
+    return;
+  }
+  document.getElementById('orderFormDiv').style.display='block';
+  document.getElementById('orderFormDiv').scrollIntoView({behavior:'smooth'});
+}
+
+function placeOrder(){
+  var name = document.getElementById('fullname').value;
+  var mob = document.getElementById('mobile').value;
+  var add = document.getElementById('address').value;
+  if(name=='' || mob=='' || add==''){
+    alert('Full Name, Mobile, Address bharo!');
+    return;
+  }
+  alert('✅ Order Placed! Thank you '+name);
+  clearCart();
+  toggleCart();
+}
+</script>
 </body>
 </html>
