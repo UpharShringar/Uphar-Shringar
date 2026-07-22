@@ -392,84 +392,57 @@ function changeQty(name, price, change){
   prices[name] = price;
 
   document.getElementById("qty_"+name.replace(/\s/g,'')).innerText=qty[name];
+let cart = [];
+let total = 0;
 
-  cart=[];
-  total=0;
-
-  for(let item in qty){
-    if(qty[item]>0){
-      for(let i=0;i<qty[item];i++){
-        cart.push({name:item, price:prices[item]});
-        total+=Number(prices[item]);
-      }
-    }
-  }
-
-  document.getElementById("cartTotal").innerText=total;
-  document.getElementById("cartItems").innerHTML=
-  cart.map(item=>"• "+item.name+" - ₹"+item.price).join("<br>");
-
-  if(cart.length==0){
-    document.getElementById("cartItems").innerHTML="No items in cart";
+function toggleCart(){
+  let drawer = document.getElementById("cartDrawer");
+  let overlay = document.getElementById("cartOverlay");
+  if(!drawer) return;
+  if(drawer.style.display === "block"){
+    drawer.style.display = "none";
+    overlay.style.display = "none";
+  } else {
+    drawer.style.display = "block";
+    overlay.style.display = "block";
   }
 }
-function addToCart(name, price, q) {
-  q = q || qty[name] || 1;
-  let finalPrice = Number(price) * q;
-  cart.push({ name: name + ' x' + q, price: finalPrice });
+
+function addToCart(name, price, q){
+  let quantity = parseInt(q) || 1;
+  if(quantity < 1) quantity = 1;
+  let finalPrice = Number(price) * quantity;
+  cart.push({ name: name + ' x' + quantity, price: finalPrice });
   total += finalPrice;
-
   document.getElementById("cartTotal").innerText = total;
-  document.getElementById("cartItems").innerHTML =
-    cart.map(item => "• " + item.name + " - ₹" + item.price).join("<br>");
+  document.getElementById("cartItems").innerHTML = cart.map(item => "• " + item.name + " - ₹" + item.price).join("<br>");
+  document.getElementById("cartCount").innerText = cart.length;
+  document.getElementById("cartDrawer").style.display = "block";
+  document.getElementById("cartOverlay").style.display = "block";
 }
 
-function buyNow(name, price){
-  // id se direct qty padh lete hain, 100% sahi ayega
-  let qtyId = "qty_" + name.replace(/\s/g,'');
-  let q = 1;
-  let el = document.getElementById(qtyId);
-  if(el){
-    q = Number(el.innerText) || qty[name] || 1;
-  } else {
-    q = qty[name] || 1;
-  }
-  if(q==0) q=1;
-
+function buyNow(name, price, q){
+  let quantity = parseInt(q) || 1;
+  if(quantity < 1) quantity = 1;
   cart = [];
   total = 0;
-  addToCart(name, price, q);
-  document.getElementById("fullname").scrollIntoView({
-    behavior:"smooth"
-  });
+  addToCart(name, price, quantity);
+  document.getElementById("fullname").scrollIntoView({behavior:"smooth"});
 }
 
-    function toggleMenu(){
-
-const menu=document.getElementById("sideMenu");
-
-if(menu.style.width=="250px"){
-menu.style.width="0";
-}else{
-menu.style.width="250px";
+function clearCart(){
+  cart=[]; total=0;
+  document.getElementById("cartItems").innerHTML="No items in cart";
+  document.getElementById("cartTotal").innerText="0";
+  document.getElementById("cartCount").innerText="0";
+  document.querySelectorAll('[id^="qty_"]').forEach(el=>{el.innerText="1";});
 }
 
-    }
-    function toggleCart() {
-  const cartPanel = document.getElementById("cartPanel");
-  if (cartPanel.style.display === "block") {
-    cartPanel.style.display = "none";
-  } else {
-    cartPanel.style.display = "block";
-  }
+function toggleMenu(){
+  const menu=document.getElementById("sideMenu");
+  if(menu.style.width=="250px"){menu.style.width="0";} else {menu.style.width="250px";}
 }
-function clearCart() {
-  cart = [];
-  total = 0;
-
-  document.getElementById("cartItems").innerHTML = "No items in cart";
-  document.getElementById("cartTotal").innerText = "0";
-}
+  
 </script>
 
 <script type="module">
