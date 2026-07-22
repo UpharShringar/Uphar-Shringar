@@ -663,12 +663,12 @@ alert("❌ " + e.message);
         <button onclick="editProduct('${doc.id}')" style="background:#2196F3;color:white;border:none;padding:5px 8px;border-radius:5px; font-size:12px;">✏️</button>
         <button onclick="deleteProduct('${doc.id}')" style="background:#f44336;color:white;border:none;padding:5px 8px;border-radius:5px; font-size:12px;">🗑️</button>
       </div>` : ""}
+      
       ${first.offer < first.price? `<div style="position:absolute;top:10px;left:10px;background:red;color:white;padding:4px 8px;border-radius:5px;font-size:11px;">🔥 SALE</div>` : ""}
       <img src="${p.image}" style="width:100%; height:220px; object-fit:contain;">
       <h3 style="margin:10px 0; font-size:16px;">${p.name}</h3>
       <div style="display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:8px 0;">
         ${validSizes.map(s => `
-        
           <button onclick="
             document.getElementById('selected_${doc.id}').value='${s.size}';
             document.getElementById('selectedOffer_${doc.id}').value='${s.offer}';
@@ -682,19 +682,9 @@ alert("❌ " + e.message);
       <input type="hidden" id="selected_${doc.id}" value="${first.size}">
       <input type="hidden" id="selectedOffer_${doc.id}" value="${first.offer}">
       <div style="display:flex; justify-content:center; align-items:center; gap:15px; margin:8px 0;"><button onclick="let q=document.getElementById('qty_${doc.id}'); if(parseInt(q.innerText)>1) q.innerText=parseInt(q.innerText)-1" style="width:32px; height:32px; border-radius:50%; border:1px solid #e91e63; background:pink;">-</button><span id="qty_${doc.id}" style="font-weight:bold;">1</span><button onclick="let q=document.getElementById('qty_${doc.id}'); q.innerText=parseInt(q.innerText)+1" style="width:32px; height:32px; border-radius:50%; border:1px solid #e91e63; background:#e91e63; color:white;">+</button></div>
-      <button
-onclick="
-let q = parseInt(document.getElementById('qty_${doc.id}').innerText) || 1;
-buyNow(
-  '${p.name} (' + document.getElementById('selected_${doc.id}').value + ')',
-  Number(document.getElementById('selectedOffer_${doc.id}').value),
-  q
-)"
-style="margin-top:8px;width:100%;padding:10px;background:#4CAF50;color:white;border:none;border-radius:5px;">
-⚡ Buy Now
-</button>
-    </div>`; 
-      
+      <button onclick="let q=parseInt(document.getElementById('qty_${doc.id}').innerText)||1; addToCart('${p.name} ('+document.getElementById('selected_${doc.id}').value+')', Number(document.getElementById('selectedOffer_${doc.id}').value), q)" style="margin-top:8px;width:100%;padding:10px;background:#e91e63;color:white;border:none;border-radius:5px;">🛒 Add to Cart</button>
+      <button onclick="let q=parseInt(document.getElementById('qty_${doc.id}').innerText)||1; buyNow('${p.name} ('+document.getElementById('selected_${doc.id}').value+')', Number(document.getElementById('selectedOffer_${doc.id}').value), q)" style="margin-top:8px;width:100%;padding:10px;background:#4CAF50;color:white;border:none;border-radius:5px;">⚡ Buy Now</button>
+    </div>`;
   });
 } 
 window.editProduct = async function(id, oldName, oldPrice, oldOffer, oldImage) {
