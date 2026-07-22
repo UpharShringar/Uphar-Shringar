@@ -381,19 +381,6 @@ function adminLogin() {
 
 let cart = [];
 let total = 0;
-let qty = {};
-let prices = {};
-
-function changeQty(name, price, change){
-  if(!qty[name]) qty[name]=0;
-  qty[name]+=change;
-  if(qty[name]<0) qty[name]=0;
-
-  prices[name] = price;
-
-  document.getElementById("qty_"+name.replace(/\s/g,'')).innerText=qty[name];
-let cart = [];
-let total = 0;
 
 function toggleCart(){
   let drawer = document.getElementById("cartDrawer");
