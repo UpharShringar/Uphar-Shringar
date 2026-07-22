@@ -110,7 +110,7 @@ cursor:pointer;
 
 <body>
   <header style="font-size:18px; font-weight:600; letter-spacing:0.5px; padding:14px; text-align:center; background:#581845; color:white;">
- Upharshringar & Gifts
+Upharshringar & Gifts
 </header>
 
 <div id="menuBtn"
@@ -404,8 +404,6 @@ function addToCart(name, price, q){
   document.getElementById("cartTotal").innerText = total;
   document.getElementById("cartItems").innerHTML = cart.map(item => "• " + item.name + " - ₹" + item.price).join("<br>");
   document.getElementById("cartCount").innerText = cart.length;
-  document.getElementById("cartDrawer").style.display = "block";
-  document.getElementById("cartOverlay").style.display = "block";
 }
 
 function buyNow(name, price, q){
