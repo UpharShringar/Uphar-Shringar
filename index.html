@@ -668,6 +668,7 @@ alert("❌ " + e.message);
       <h3 style="margin:10px 0; font-size:16px;">${p.name}</h3>
       <div style="display:flex; gap:6px; justify-content:center; flex-wrap:wrap; margin:8px 0;">
         ${validSizes.map(s => `
+        
           <button onclick="
             document.getElementById('selected_${doc.id}').value='${s.size}';
             document.getElementById('selectedOffer_${doc.id}').value='${s.offer}';
@@ -675,7 +676,7 @@ alert("❌ " + e.message);
             document.getElementById('offer_${doc.id}').innerHTML='₹${s.offer}';
           " style="padding:5px 12px; border:1px solid #e91e63; border-radius:20px; background:#fff; color:#000;">${s.size}</button>
         `).join("")}
-      </div>
+       </div>
       <p id="mrp_${doc.id}" style="text-decoration:line-through; color:gray; margin:4px 0; font-size:13px;">₹${first.price}</p>
       <p id="offer_${doc.id}" style="color:#e91e63; font-size:18px; font-weight:bold; margin:4px 0;">₹${first.offer}</p>
       <input type="hidden" id="selected_${doc.id}" value="${first.size}">
@@ -692,7 +693,8 @@ buyNow(
 style="margin-top:8px;width:100%;padding:10px;background:#4CAF50;color:white;border:none;border-radius:5px;">
 ⚡ Buy Now
 </button>
-    </div>`;
+    </div>`; 
+      
   });
 } 
 window.editProduct = async function(id, oldName, oldPrice, oldOffer, oldImage) {
