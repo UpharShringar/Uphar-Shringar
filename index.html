@@ -565,22 +565,28 @@ alert("❌ " + e.message);
 
 };      
    
- window.loadProducts = async function() {
+window.loadProducts = async function() {
   const snap = await getDocs(collection(db, "products"));
   const products = document.getElementById("products");
+  const adminList = document.getElementById("adminProductList");
+  let allDocs = [];
+  snap.forEach(d=> allDocs.push({id:d.id, ...d.data()}));
+  allDocs.sort((a,b)=> (a.order||999) - (b.order||999));
   const selectedCategory = document.getElementById("filterCategory")? document.getElementById("filterCategory").value : "";
   const searchText = document.getElementById("searchBox")?.value.toLowerCase() || "";
   const isAdmin = window.isAdmin === true;
   products.innerHTML = "";
 
-  snap.forEach(doc => {
-    const p = doc.data();
+  allDocs.forEach(doc => {
+const p = doc;
     if(selectedCategory && selectedCategory.trim()!== "" && (p.category || "").trim()!== selectedCategory.trim()) return;
     if(searchText && !p.name.toLowerCase().includes(searchText)) return;
 
     const validSizes = p.sizes? p.sizes.filter(s => s && s.size && String(s.size).trim()!== "") : [];
     const first = validSizes.length > 0? validSizes[0] : {size: "", price: p.price, offer: p.offerPrice || p.price};
-
+if(isAdmin && adminList){
+  adminList.innerHTML += `<div style="background:white; padding:8px; margin:5px 0; display:flex; gap:8px; align-items:center;"><img src="${p.image}" style="width:40px; height:40px;"><span style="flex:1;">${p.name} (Order:${p.order||999})</span><button onclick="editProduct('${doc.id}')" style="background:blue; color:white;">✏️</button><button onclick="deleteProduct('${doc.id}')" style="background:red; color:white;">🗑️</button></div>`;
+}
     products.innerHTML += `
     <div class="card" style="background:#fff; border-radius:12px; padding:12px; text-align:center; position:relative; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
       ${isAdmin? `<div style="position:absolute; top:8px; right:8px; display:flex; gap:5px; z-index:10;">
