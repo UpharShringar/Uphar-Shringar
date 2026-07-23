@@ -576,6 +576,7 @@ window.loadProducts = async function() {
   const searchText = document.getElementById("searchBox")?.value.toLowerCase() || "";
   const isAdmin = window.isAdmin === true;
   products.innerHTML = "";
+  if(adminList) adminList.innerHTML = "<h3 style='margin-top:20px;'>📋 Uploaded Products - Edit/Delete</h3>";
 
   allDocs.forEach(doc => {
 const p = doc;
