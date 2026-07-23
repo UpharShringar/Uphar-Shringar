@@ -331,6 +331,8 @@ box-shadow:0 2px 8px rgba(0,0,0,.2);">
   <option value="Other">📦 Other</option>
 </select>
 <input type="file" id="productImage"><br><br>
+ <input id="productOrder" type="number" placeholder="Display Order - 1 = Sabse Upar" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:5px;">
+<small style="color:gray;">1 likhoge to sabse pehle dikhega, 2 dusre pe, 10 sabse niche</small>   
 
 <button onclick="uploadProduct()">
 📤 Upload Product
@@ -480,7 +482,7 @@ window.placeOrder = async function () {
     window.uploadProduct = async function () {
 
 const name = document.getElementById("productName").value;
-
+const productOrder = document.getElementById("productOrder").value;
 const size1 = document.getElementById("size1").value;
 const price1 = document.getElementById("price1").value;
 const offer1 = document.getElementById("offer1").value;
@@ -539,6 +541,7 @@ sizes: [size1, size2, size3].map((s, i) => {
 image: data.secure_url,
 stock: 100,
 createdAt: new Date().toISOString(),
+order: Number(productOrder) || 999,
 status: "active"
 
 });
