@@ -330,13 +330,9 @@ box-shadow:0 2px 8px rgba(0,0,0,.2);">
   <option value="Gift Items">🎁 Gift Items</option>
   <option value="Other">📦 Other</option>
 </select>
-<input type="file" id="productImage"><br><br>
- <input id="productOrder" type="number" placeholder="Display Order - 1 = Sabse Upar" style="width:100%; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:5px;">
-<small style="color:gray;">1 likhoge to sabse pehle dikhega, 2 dusre pe, 10 sabse niche</small>   
-
-<button onclick="uploadProduct()">
-📤 Upload Product
-</button>
+<input type="number" id="productOrder" placeholder="Display Order - 1 = Sabse Upar" style="width:95%; padding:10px; margin:10px 0;"><br><br>
+<button onclick="uploadProduct()" style="width:100%; padding:12px; background:#581845; color:white; border:none; border-radius:8px; font-weight:bold;">🚀 Upload Product</button>
+<div id="adminProductList" style="margin-top:20px;"></div>
   <script>
   window.isAdmin = false;
 
