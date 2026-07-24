@@ -418,6 +418,19 @@ function toggleMenu(){
     menu.style.width="280px";
   }
 }
+    window.shareProduct = async function(id, name, price){
+  const shareUrl = window.location.origin + window.location.pathname + "?product=" + id;
+  const shareText = `🛍️ ${name}\n💰 Price: ₹${price}\n👉 Order karo: ${shareUrl}\n\nUphar Shringar & Gifts - Narkatiaganj`;
+
+  if(navigator.share){
+    try {
+      await navigator.share({ title: name, text: shareText, url: shareUrl });
+    } catch(e){}
+  } else {
+    await navigator.clipboard.writeText(shareText);
+    alert("✅ Link Copied! WhatsApp pe share karo:\n\n" + shareUrl);
+  }
+}
 function openMenu(){
   document.getElementById('sideMenu').style.width='280px';
 }
@@ -603,7 +616,7 @@ if(isAdmin && adminList){
   adminList.innerHTML += `<div style="background:white; padding:8px; margin:5px 0; display:flex; gap:8px; align-items:center;"><img src="${p.image}" style="width:40px; height:40px;"><span style="flex:1;">${p.name} (Order:${p.order||999})</span><button onclick="editProduct('${doc.id}')" style="background:blue; color:white;">✏️</button><button onclick="deleteProduct('${doc.id}')" style="background:red; color:white;">🗑️</button></div>`;
 }
     products.innerHTML += `
-    <div class="card" style="background:#fff; border-radius:12px; padding:12px; text-align:center; position:relative; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+    <div class="card" data-product-id="${doc.id}" style="background:#fff; border-radius:12px; padding:12px;
       ${isAdmin? `<div style="position:absolute; top:8px; right:8px; display:flex; gap:5px; z-index:10;">
         <button onclick="editProduct('${doc.id}')" style="background:#2196F3;color:white;border:none;padding:5px 8px;border-radius:5px; font-size:12px;">✏️</button>
         <button onclick="deleteProduct('${doc.id}')" style="background:#f44336;color:white;border:none;padding:5px 8px;border-radius:5px; font-size:12px;">🗑️</button>
@@ -629,6 +642,7 @@ if(isAdmin && adminList){
       <div style="display:flex; justify-content:center; align-items:center; gap:15px; margin:8px 0;"><button onclick="let q=document.getElementById('qty_${doc.id}'); if(parseInt(q.innerText)>1) q.innerText=parseInt(q.innerText)-1" style="width:32px; height:32px; border-radius:50%; border:1px solid #e91e63; background:pink;">-</button><span id="qty_${doc.id}" style="font-weight:bold;">1</span><button onclick="let q=document.getElementById('qty_${doc.id}'); q.innerText=parseInt(q.innerText)+1" style="width:32px; height:32px; border-radius:50%; border:1px solid #e91e63; background:#e91e63; color:white;">+</button></div>
       <button onclick="let q=parseInt(document.getElementById('qty_${doc.id}').innerText)||1; addToCart('${p.name} ('+document.getElementById('selected_${doc.id}').value+')', Number(document.getElementById('selectedOffer_${doc.id}').value), q)" style="margin-top:8px;width:100%;padding:10px;background:#e91e63;color:white;border:none;border-radius:5px;">🛒 Add to Cart</button>
       <button onclick="let q=parseInt(document.getElementById('qty_${doc.id}').innerText)||1; buyNow('${p.name} ('+document.getElementById('selected_${doc.id}').value+')', Number(document.getElementById('selectedOffer_${doc.id}').value), q)" style="margin-top:8px;width:100%;padding:10px;background:#4CAF50;color:white;border:none;border-radius:5px;">⚡ Buy Now</button>
+      <button onclick="shareProduct('${doc.id}', '${p.name}', ${first.offer})" style="margin-top:6px; width:100%; padding:8px; background:#25D366; color:white; border:none; border-radius:5px;">📤 Share Product</button>
     </div>`;
   });
 } 
